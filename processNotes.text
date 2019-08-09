@@ -335,6 +335,17 @@ PHASE 3: Configure Mongoose to connect with Mongo database
            DATABASE_URL=mongodb://localhost/subscribers
            ------------------------------------------------
 
+        4. In server.js, replace the copied database url with "process.env.DATABASE_URL" which will
+           link to the ".env" file and use the DATABASE_URL variable we just put in.
+           ---------------------------------------------------------------------------------
+           mongoose.connect('process.env.DATABSE_URL', { useNewUrlParser: true });
+           ---------------------------------------------------------------------------------
+
+           * Note that if you try to run this, you will get an error.
+           * This is becasue we have NOT loaded the ".env" library
+
+        5. Load the ".env" library to use the 
+
 
 
 

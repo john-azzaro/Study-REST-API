@@ -1,10 +1,11 @@
+require('dotenv').config();
                                                                                    // Load modules //
 const express = require('express');                                                // P2.1 -- Load the express library
 const app = express();                                                             // P2.2 -- Instantiate the app using express.
 const mongoose = require('mongoose');                                              // P3.1 -- Load mongoose module.
 
                                                                                    // Database connections //
-mongoose.connect('mongodb://localhost/subscribers', { useNewUrlParser: true });    // P3.2 -- Connect to MongoDB database (& pass deprecation remedy for URL parser). 
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });             // P3.2 -- Connect to MongoDB database (& pass deprecation remedy for URL parser). 
 const db = mongoose.connection;                                                    // P3.3 -- Connect to your database.
 db.on('error', function(error) {                                                   // P3.4-1 -- ... IF there is an ERROR connecting to database, log the error object.
     console.error(error);
