@@ -228,13 +228,16 @@ PHASE 3: Configure Mongoose to connect with Mongo database
     ======================================
         *   Then, simply connect to your MongoDB database!
         *   Note that this can be either localhost or hosted (in this study, its localhost).
-        *   Below, we are connecting to mongoDB via mongoose with a database connection string that links to
+        *   Below, we are connecting to mongoDB via mongoose with a database connection string that links to:
 
-                          database       local storage    database name
+       Database string =   databas      local storage    database name
                                 \            |            /
             -------------------------------------------------------
             mongoose.connect('mongodb://localhost/subscribers');
             -------------------------------------------------------
+
+            DEVELOPMENT NOTE: The string above is TEMPORARY because it is only for the localhost.  We'll want
+                              the database hosted later on with environment variables (see STEP 5);
 
 
     STEP 2.2: Resolve deprecation warning:
@@ -260,7 +263,7 @@ PHASE 3: Configure Mongoose to connect with Mongo database
 
         *   All this means is we need to add an additional parameter to mongoose.connect with this option.
 
-                         database       local storage    database name          passed in option
+       Database string =   database       local storage    database name          passed in option
                                 \            |            /                        /
             ---------------------------------------------------------------------------------
             mongoose.connect('mongodb://localhost/subscribers', { useNewUrlParser: true });

@@ -6,10 +6,10 @@ const mongoose = require('mongoose');                                           
                                                                                    // Database connections //
 mongoose.connect('mongodb://localhost/subscribers', { useNewUrlParser: true });    // P3.2 -- Connect to MongoDB database (& pass deprecation remedy for URL parser). 
 const db = mongoose.connection;                                                    // P3.3 -- Connect to your database.
-db.on('error', function(error) {                                                   // P3.4 -- If there is an ERROR connecting to database, log the error object.
+db.on('error', function(error) {                                                   // P3.4-1 -- ... IF there is an ERROR connecting to database, log the error object.
     console.error(error);
 });
-db.once('open', function() {                                                       // P3.4 -- IF the connection is successful, log "Connected to Database..."
+db.once('open', function() {                                                       // P3.4-2 -- ... IF the connection is successful, log "Connected to Database..."
     console.log('Connected to Database...');
 });
 
