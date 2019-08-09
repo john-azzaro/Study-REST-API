@@ -132,7 +132,7 @@ PHASE 1: Project setup:
             *   These files are essentially early in development.
 
                 1. server.js      -- This file will be for the server code.
-                2. .env           -- This file will be for enviroment variables.
+                2. .env           -- This file is used by the dotenv package to define environment variables persistently.
                 3. .gitignore     -- This file will tell github to NOT track certain files, such as node_modules.
 
 
