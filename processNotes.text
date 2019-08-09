@@ -8,17 +8,13 @@ PHASE 1: Project setup:
     //Project setup:
         1.   projectFolder                                           -- Setup project folder (and move into it).
         2.   npm init                                                -- Create a package.json file.
-
     //Install application dependencies:
         3.   npm install express                                     -- Install the express framework.
              npm install <dependencies>                              -- Install other dependencies for your project.
-
     // Install development dependencies:
         4.   npm install --save-dev dotenv nodemon                   -- Install developer dependencies just for development (i.e. not part of the production code)
-
     // Create custom "devStart" script in package.json > scripts:
         5.   "devStart": "nodemon server.js"                         -- When you run this, your server will run/restart while developing your code. 
-
     // Create your initial application files:
         6.1.   server.js                                             -- Creates a .js file for server code.
         6.2.   .env                                                  -- Creates a file used by the dotenv package to define environment variables persistently.
@@ -136,3 +132,5 @@ PHASE 1: Project setup:
                 3. .gitignore     -- This file will tell github to NOT track certain files, such as node_modules.
 
 
+PHASE 2: Create the server (in server.js):
+==========================================
