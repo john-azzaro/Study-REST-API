@@ -267,7 +267,7 @@ PHASE 3: Configure Mongoose to connect with Mongo database
             ----------------------------------------------------------------------------------
 
 
-    STEP 3: Connect to your database! 
+    STEP 3: Connect to your database:
     =================================
         *   This simply means that you are connecting (i.e. getting a reference) to the specified database (i.e. subscribers):
             -------------------------------------
@@ -275,9 +275,44 @@ PHASE 3: Configure Mongoose to connect with Mongo database
             -------------------------------------
 
     
-    STEP 4: 
+    STEP 4: Verify that your database connection is working properly:
+    ================================================================
+        *   This is important because it will show is the connection to the database was successful or not.
+
+        *   First, if there is UNSUCCESSFUL (i.e. an error occured and something went wrong with the connection), 
+            log out an error with an error object:
+            ---------------------------------
+            db.on('error', function() {
+                console.error(error);
+            });
+            ---------------------------------
+
+        *   Second, if connection is SUCCESSFUL (i.e. once the connection is successful):
+            *   Note: The "once" in db.once means that it will only run once.
+            ---------------------------------------------
+            db.once('error', function() {
+                console.log('Connected to Database...');
+            });
+            ---------------------------------------------
+
+        *   When you run "npm run devStart", you will see the following if the connection was successful:
+            ---------------------------------------------------------------------------------------------
+            $ npm run devStart
+
+            > study-restful-api-design@1.0.0 devStart C:\Users\Admin\Desktop\Study-RESTful-API-Design
+            > nodemon server.js
+
+            [nodemon] 1.19.1
+            [nodemon] to restart at any time, enter `rs`
+            [nodemon] watching: *.*
+            [nodemon] starting `node server.js`
+            Your app is litening on Port 3000...
+            Connected to Database...                                                                       <== successful connection to database
+
+            ---------------------------------------------------------------------------------------------
 
 
+    STEP 5: 
 
 
 
