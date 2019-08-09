@@ -1,2 +1,138 @@
 Restful API design study
 =========================
+
+PHASE 1: Project setup:
+=======================
+    SHORT version
+    =============
+    //Project setup:
+        1.   projectFolder                                           -- Setup project folder (and move into it).
+        2.   npm init                                                -- Create a package.json file.
+
+    //Install application dependencies:
+        3.   npm install express                                     -- Install the express framework.
+             npm install <dependencies>                              -- Install other dependencies for your project.
+
+    // Install development dependencies:
+        4.   npm install --save-dev dotenv nodemon                   -- Install developer dependencies just for development (i.e. not part of the production code)
+
+    // Create custom "devStart" script in package.json > scripts:
+        5.   "devStart": "nodemon server.js"                         -- When you run this, your server will run/restart while developing your code. 
+
+    // Create your initial application files:
+        6.1.   server.js                                             -- Creates a .js file for server code.
+        6.2.   .env                                                  -- Creates a file used by the dotenv package to define environment variables persistently.
+        6.3.   .gitignore                                            -- Creates a file that tells git/github NOT to track the listed files/folders.
+
+
+
+    EXTENDED version
+    =================
+        STEP 1: Create and move into project folder:
+        ============================================
+            *  Nothing magic here, just moving into the project folder. 
+
+
+
+        STEP 2: Run "npm init" to create a package.json package:
+        ========================================================
+            * When you write "npm init", you are essentially creating a package.json file, which is essentially lists
+              the packages that are in your dependencies.
+
+            * Although there are more than a few ways to initialize the project, but here are 2 tried-and-true ways:
+            
+                1. Write "npm init" and fill out the details of your project for the package.json files:
+                ---------------
+                npm init
+                ---------------
+
+                --OR--
+                
+                2. Write "npm init" and add the -y flag which will essentially say yes to all the default settings. 
+                ---------------
+                npm init -y
+                ---------------
+
+
+
+        STEP 2: Install APPLICATION dependencies:
+        =========================================
+            *   Application dependencies are some of the application-centric npm packages that will help that make your
+                your app do what it does. In this case, we want to install "express" (so that we can create an express app)
+                and mongoose (which will help us interact with mongoDB).
+
+            *   You can do this one of THREE ways:
+
+                1. Go into your package.json folder, create a "dependencies" property and list out the the dependencies
+                   one by one (e.g. "express": "*") where the key represents the package name and the value "*" represents
+                   the most current version.  
+                
+                    ----------------------------
+                    "dependencies": {
+                        "express": "*",
+                        "mongoose": "*"
+                    }
+                    ----------------------------
+
+                *   Then, you then go to gitbash and write:
+                    ----------------------
+                    npm install
+                    ----------------------
+                        * This is also useful if you are cloning a repository because you will be able to install the dependencies 
+                        used in the project on your local machine!
+
+                    
+        SPECIAL NOTE:   Its a LOT easier just to do it the second way because you have to manually create the dependencies 
+                        property this way, THEN run "npm install" anyway.  I would suggest that if you do want to do it this way, 
+                        write "npm install express" first (which then creates the "node_modules" folder AND automatically creates
+                        the dependencies propert) then go to your package.json file and install each dependencies you want.  This is
+                        also a good way to do it if you have to install certain build versions that are NOT current for your project.
+                
+            --OR--
+
+                2. In gitbash (in your project folder), write the following:
+                --------------------------------
+                npm install express mongoose 
+                --------------------------------
+
+
+
+        STEP 3: Install DEVELOPMENT dependencies
+        ========================================
+            *  Development dependencies are dependencies that are used for DEVELOPMENT ONLY and they DO NOT get installed in the 
+               production version of your application.
+                ------------------------------------------
+                npm install --save-dev dotenv nodemon
+                ------------------------------------------
+
+                    * "--save-dev" means that the following npm modules will be saved in the development (i.e. dev) 
+                    * "dotenv" allows us to pull environment variables from the "dotenv" file.
+                    * "nodemon" allows us to have restart our server as we change the code.
+
+
+
+        STEP 4: In package.json file, add your custom dev scripts:
+        ==========================================================
+            *   Custom dev scripts will allow you to run your application during development however you wish.
+
+                1. First, remove the "test" property (dont need it).
+                2. Add a "devStart" property with a value of "nodemon server.js"
+
+                ----------------------------------------------
+                "devStart": "nodemon server.js"
+                ----------------------------------------------
+
+            *   What "devStart" does is when you are in gitbash and you want to run your application locally during development,
+                all you need to do is type "nodemon server.js" and you will be able to have the application run and restart while
+                you make changes to the code. 
+
+
+        STEP 5: Create inital files for the project:
+        =========================================================
+            *   These files are essentially early in development.
+
+                1. server.js      -- This file will be for the server code.
+                2. .env           -- This file will be for enviroment variables.
+                3. .gitignore     -- This file will tell github to NOT track certain files, such as node_modules.
+
+
