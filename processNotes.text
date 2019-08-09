@@ -133,5 +133,85 @@ PHASE 1: Project setup:
 
 
 
-PHASE 2: Create the server (in server.js):
-==========================================
+PHASE 2: Create the BASIC server:
+=================================
+    SHORT VERSION
+    =================
+        1.  Load express and instantiate the app using express.
+        2.  Create a server. 
+        3.  Test server.
+
+
+    EXTENDED VERSION
+    =================
+        STEP 1: Create "express" and "app" variables to load Express and instantiate the app:
+        ====================================================================================
+            *   Since we are creating an Express app (as opposed to a node app which requires more code, etc.), we need to Load
+                the Express library from the package you installed as a dependency (i.e. npm express). 
+            *   And since the "express" variable is a function, you can run it on a second line as the "app" variable.
+                --------------------------------------------------
+                const express = require('express');
+                const app = express();    
+                --------------------------------------------------    
+
+
+        STEP 2: Create a server to listen for client requests:
+        ======================================================
+            *   To start the server, you need to tell the "app" to "listen" (i.e. app.listen) and pass the port number (i.e. 3000).
+            *   What this does is that when you run "npm run devStart" (remember, this is the custom dev script from earlier), the 
+                server will be listening on port 3000 for requests.
+            *   Then, when you go to your browser and type "localhost:3000", you will see your basic application running.
+                -------------------------------------------------------
+                app.listen(3000, function() {
+                    console.log('Your app is listening on Port 3000...);
+                })
+                ------------------------------------------------------- 
+
+
+        OPTIONAL: Run "npm run devStart" to test your server:
+        ===================================================== 
+            * The result when you run "npm run devStart" will be:
+                    --------------------------------------------------------------------------------------------
+                    $ npm run devStart
+
+                    > study-restful-api-design@1.0.0 devStart C:\Users\Admin\Desktop\Study-RESTful-API-Design
+                    > nodemon server.js
+
+                    [nodemon] 1.19.1
+                    [nodemon] to restart at any time, enter `rs`
+                    [nodemon] watching: *.*
+                    [nodemon] starting `node server.js`
+                    Server is running on Port 3000...
+
+                    --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Additional resources
+https://alligator.io/nodejs/express-basics/  -- good overview of basic express app 
+https://www.freecodecamp.org/news/how-to-write-a-production-ready-node-and-express-app-f214f0b17d8c/  -- good overview
