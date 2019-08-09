@@ -123,13 +123,14 @@ PHASE 1: Project setup:
                 you make changes to the code. 
 
 
-        STEP 5: Create inital files for the project:
+        STEP 5: Create initial files for the project:
         =========================================================
             *   These files are essentially early in development.
 
                 1. server.js      -- This file will be for the server code.
                 2. .env           -- This file is used by the dotenv package to define environment variables persistently.
                 3. .gitignore     -- This file will tell github to NOT track certain files, such as node_modules.
+
 
 
 PHASE 2: Create the server (in server.js):
