@@ -1,5 +1,28 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Restful API design study
 =========================
+    *   For this REST API Design study, I thought it would be neat to lay out everything step-by-step
+        so that you can get a sense of how the design process works and how the gradual app builds out.
+    *   For this study, Im trying to be as thorough as possible in walking through each of the "phases" which
+        address specific milestones in the project build.
+    *   Directly below, you will see a summary of the build process, and directly below that section you will
+        see each phase well documented with steps, notes from my experience, and the code itself.
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+
+    STUDY SUMMARY
+    ==============
+    P1: Project Setup                           -- Create folder, install dependencies, install developer dependencies, create initial 
+                                                    application files (e.g. server.js, etc.).
+    P2: Create Basic Server                     -- Load Express library, instantiate app, and create server in server.js.
+    P3: Connect Mongoose to MongoDB             -- 
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 PHASE 1: Project setup:
 =======================
@@ -144,8 +167,8 @@ PHASE 2: Create the BASIC server:
 
     EXTENDED VERSION
     =================
-        STEP 1: Create "express" and "app" variables to load Express and instantiate the app:
-        ====================================================================================
+        STEP 1: Load the Express module and instantiate the app:
+        ========================================================
             *   Since we are creating an Express app (as opposed to a node app which requires more code, etc.), we need to Load
                 the Express library from the package you installed as a dependency (i.e. npm express). 
             *   And since the "express" variable is a function, you can run it on a second line as the "app" variable.
@@ -186,6 +209,76 @@ PHASE 2: Create the BASIC server:
                     --------------------------------------------------------------------------------------------
 
 
+PHASE 3: Configure Mongoose to connect with Mongo database
+===========================================================
+    *   To use a database to store your data (as opposed to static storage which clears every time you restart 
+        your app), you need to utilize "mongoose", a dependency you installed earlier which helps connect Your
+        application with your mongoDB database.
+
+
+    STEP 1: Load the "mongoose" library:
+    ====================================
+        *   Assuming you already added mongoose to your list of dependencies, load the library into your project.
+            --------------------------------------------
+            const mongoose = require('mongoose');
+            --------------------------------------------
+
+
+    STEP 2.1: Connect to the Mongo Database:
+    ======================================
+        *   Then, simply connect to your MongoDB database!
+        *   Note that this can be either localhost or hosted (in this study, its localhost).
+        *   Below, we are connecting to mongoDB via mongoose with a database connection string that links to
+
+                          database       local storage    database name
+                                \            |            /
+            -------------------------------------------------------
+            mongoose.connect('mongodb://localhost/subscribers');
+            -------------------------------------------------------
+
+
+    STEP 2.2: Resolve deprecation warning:
+    ======================================
+        *   When you run "npm run devStart", you will see a "deprecation warning", meaning that some technology is being
+            phased out or suspended.  In the case of this study, the deprecation is for "URL string parser".
+
+            -------------------------------------------------------------------------------------------------------
+            
+            $ npm start devStart
+
+            > study-restful-api-design@1.0.0 start C:\Users\Admin\Desktop\Study-RESTful-API-Design
+            > node server.js "devStart"
+
+            (node:1704) DeprecationWarning: current URL string parser is deprecated, and will be removed in a 
+            future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
+            Your app is litening on Port 3000...
+
+            --------------------------------------------------------------------------------------------------------
+
+        *   To remedy this deprecation warning for the URL string parser, the warning asks you to pass in the 
+            option "{ useNewUrlParser: true }" to "MongoClient.connect" because the old one is deprecated.
+
+        *   All this means is we need to add an additional parameter to mongoose.connect with this option.
+
+                         database       local storage    database name          passed in option
+                                \            |            /                        /
+            ---------------------------------------------------------------------------------
+            mongoose.connect('mongodb://localhost/subscribers', { useNewUrlParser: true });
+            ----------------------------------------------------------------------------------
+
+
+    STEP 3: Connect to your database! 
+    =================================
+        *   This simply means that you are connecting (i.e. getting a reference) to the specified database (i.e. subscribers):
+            -------------------------------------
+            const db = mongoose.connection;
+            -------------------------------------
+
+    
+    STEP 4: 
+
+
+
 
 
 
@@ -215,3 +308,6 @@ PHASE 2: Create the BASIC server:
 // Additional resources
 https://alligator.io/nodejs/express-basics/  -- good overview of basic express app 
 https://www.freecodecamp.org/news/how-to-write-a-production-ready-node-and-express-app-f214f0b17d8c/  -- good overview
+https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications  -- mongoose and mongoDB overview
+https://mongoosejs.com/docs/connections.html - mongoose connections
+https://www.tutorialkart.com/nodejs/mongoose/connect-to-mongodb/ -- connecting to database guide
