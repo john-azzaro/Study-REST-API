@@ -315,7 +315,25 @@ PHASE 3: Configure Mongoose to connect with Mongo database
             ---------------------------------------------------------------------------------------------
 
 
-    STEP 5: 
+    STEP 5: Relocate database string to .env file so we can use localhost AND external host later:
+    ==============================================================================================
+        *   While in development, having the database locally is ideal.  However, when you deploy the application
+            you will want in something that is NOT local.  
+
+        1. First, if you havent already, create a ".env" file:
+        
+            .env
+
+        2. Copy the database string from mongoose.connect:
+            -------------------------------------------------------------------------------
+            mongoose.connect('mongodb://localhost/subscribers', { useNewUrlParser: true });    ==>   mongodb://localhost/subscribers
+            -------------------------------------------------------------------------------
+            
+        3. Inside the ".env" file, create a variable called DATABASE_URL and set the value to the database string
+           that we moved from server.js. 
+           ------------------------------------------------
+           DATABASE_URL=mongodb://localhost/subscribers
+           ------------------------------------------------
 
 
 
