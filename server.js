@@ -18,6 +18,11 @@ db.once('open', function() {                                                    
                                                                                    // Middlewares //
 app.use(express.json());                                                           //P4-1  --  This middleware allows the server to accept incoming requests as a JSON body.                                            
 
+                                                                                   // Routers //
+const subscriberRouter
+
+
+
                                                                                    // Server connection //
 app.listen(3000, function() {                                                      // P2.3 -- listen on port 300 for 
     console.log('Your app is litening on Port 3000...');

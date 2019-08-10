@@ -7,15 +7,17 @@ Restful API design study
         address specific milestones in the project build.
     *   Directly below, you will see a summary of the build process, and directly below that section you will
         see each phase well documented with steps, notes from my experience, and the code itself.
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
 
     STUDY SUMMARY
     ==============
-    P1: Project Setup                           -- Create folder, install dependencies, install developer dependencies, create initial 
-                                                    application files (e.g. server.js, etc.).
-    P2: Create Basic Server                     -- Load Express library, instantiate app, and create server in server.js.
-    P3: Setup your database:                    -- Load mongoose, connect to mongodb, verify connection logic, create .env file.
-
+    P1: Project Setup                           --   Create folder, install dependencies, install developer dependencies, create initial 
+                                                     application files (e.g. server.js, etc.).
+    P2: Create Basic Server                     --   Load Express library, instantiate app, and create server in server.js.
+    P3: Setup database connection               --   Load mongoose, connect to mongodb, verify connection logic, create .env file.
+    P4: Setup initial middleware                --   Add built-in middleware like express.json (lets out server accept JSON as a body).
+    P5: Setup Routers                           --   
 
 
 
@@ -209,8 +211,8 @@ PHASE 2: Create the BASIC server:
                     --------------------------------------------------------------------------------------------
 
 
-PHASE 3: Setup your database:
-=============================
+PHASE 3: Setup your database connection:
+=========================================
     *   To use a database to store your data (as opposed to static storage which clears every time you restart 
         your app), you need to utilize "mongoose", a dependency you installed earlier which helps connect Your
         application with your mongoDB database.
@@ -334,11 +336,16 @@ PHASE 3: Setup your database:
             
                 .env
 
+
             2.  Copy the database string from mongoose.connect:
                 -------------------------------------------------------------------------------
-                mongoose.connect('mongodb://localhost/subscribers', { useNewUrlParser: true });    ==>   mongodb://localhost/subscribers
+                mongoose.connect('mongodb://localhost/subscribers', { useNewUrlParser: true });    
+                -------------------------------------------------------------------------------
+                -------------------------------------------------------------------------------
+                mongoose.connect('', { useNewUrlParser: true });                                ==>   mongodb://localhost/subscribers
                 -------------------------------------------------------------------------------
                 
+
             3.  Inside the ".env" file, create a variable called DATABASE_URL and set the value to the database string
                 that we moved from server.js. 
                 ------------------------------------------------
@@ -349,6 +356,7 @@ PHASE 3: Setup your database:
                 *   The variables in your .env file MUST NOT have breaks (i.e. no spaces).
                 *   The variables in your .env file MIST NOT be commited to your repository (because sensitive passwords may be in there).
 
+
             4.  In server.js, replace the copied database url with "process.env.DATABASE_URL" which will
                 link to the ".env" file and use the DATABASE_URL variable we just put in.
                 ---------------------------------------------------------------------------------
@@ -357,10 +365,13 @@ PHASE 3: Setup your database:
                 * Note that if you try to run this, you will get an error.
                 * This is becasue we have NOT loaded the ".env" library
 
+
             5. Load the ".env" library in server.js
+                *   Note, if you encounter an error, check to see if you installed "dotenv" as a dev dependency.
                 -----------------------------------------
                 require('dotenv').config();
                 -----------------------------------------
+
 
             OPTIONAL: Check to see if you have access to your environment variables
                 * Note: You can check to see if you have access to your environment variables via the process.env object
@@ -370,7 +381,7 @@ PHASE 3: Setup your database:
 
 
 PHASE 4: Add initial middleware:
-=====================================
+=================================
     *   Middlewares are code that run when the server gets a request but BEFORE that request gets sent to your application routes.
     *   There are many middlewares that can be used in your stack, running one after the other, including built-in, third-party, 
         and custom middleware.
@@ -390,7 +401,10 @@ PHASE 4: Add initial middleware:
 
 
 
-PHASE 5:
+PHASE 5: Add initial Routers:
+=============================
+    *   Instead of having all our routes inside the server.js file, which can make the file cluttered and messy, we can use Routers.
+    *   Routers are the seperate files that are going to hold all the routes for our application.
 
 
 
