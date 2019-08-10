@@ -465,10 +465,15 @@ PHASE 5: Add initial Routers:
         ======================================================
             *   In your router file (e.g. subscribers.js), do the following:
                 1.   First, you need to load express.
-                2.   Second, you need to load the router from express and save as a constant named "router".
+                2.   Second, you need to load the router from express and save as a constant named "router" so we can you the router protion of express.
+                3.   Third, export the router so we can access it in server.js.
                 -----------------------------------
                 const express = require('express');
                 const router = express.Router();
+
+                    ...routes go here...
+
+                module.exports = router;
                 -----------------------------------
 
 
