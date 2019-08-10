@@ -319,6 +319,7 @@ PHASE 3: Configure Mongoose to connect with Mongo database
     ==============================================================================================
         *   While in development, having the database locally is ideal.  However, when you deploy the application
             you will want in something that is NOT local.  
+        *   Additionally, you do NOT want to commit environment variables (i.e. the ".env" file).
 
         1. First, if you havent already, create a ".env" file:
         
@@ -344,7 +345,16 @@ PHASE 3: Configure Mongoose to connect with Mongo database
            * Note that if you try to run this, you will get an error.
            * This is becasue we have NOT loaded the ".env" library
 
-        5. Load the ".env" library to use the 
+        5. Load the ".env" library in server.js
+           -----------------------------------------
+            require('dotenv').config();
+           -----------------------------------------
+
+        OPTIONAL: Check to see if you have access to your environment variables
+            * Note: You can check to see if you have access to your environment variables via the process.env object
+            ----------------------------------------
+            console.log(process.env);
+            ----------------------------------------
 
 
 
@@ -378,3 +388,5 @@ https://www.freecodecamp.org/news/how-to-write-a-production-ready-node-and-expre
 https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications  -- mongoose and mongoDB overview
 https://mongoosejs.com/docs/connections.html - mongoose connections
 https://www.tutorialkart.com/nodejs/mongoose/connect-to-mongodb/ -- connecting to database guide
+https://medium.com/@thejasonfile/using-dotenv-package-to-create-environment-variables-33da4ac4ea8f  --  dotenv file
+https://dev.to/deammer/loading-environment-variables-in-js-apps-1p7p -- dotenv file

@@ -1,4 +1,5 @@
-require('dotenv').config();
+require('dotenv').config();                                                        // P3-5 --  Load "dotenv" to read data from your ".env" file (best to load this as early as possible) 
+                                                  
                                                                                    // Load modules //
 const express = require('express');                                                // P2.1 -- Load the express library
 const app = express();                                                             // P2.2 -- Instantiate the app using express.
