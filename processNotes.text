@@ -404,3 +404,4 @@ https://mongoosejs.com/docs/connections.html - mongoose connections
 https://www.tutorialkart.com/nodejs/mongoose/connect-to-mongodb/ -- connecting to database guide
 https://medium.com/@thejasonfile/using-dotenv-package-to-create-environment-variables-33da4ac4ea8f  --  dotenv file
 https://dev.to/deammer/loading-environment-variables-in-js-apps-1p7p -- dotenv file
+https://expressjs.com/en/guide/using-middleware.html  -- middleware (express.json)
