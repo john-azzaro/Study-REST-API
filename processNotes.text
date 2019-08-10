@@ -442,18 +442,34 @@ PHASE 5: Add initial Routers:
                 routes > subscribers.js
 
 
-        STEP 4: Inside server.js, tell the app we want to use the route we have just setup:
-        ==================================================================================
+        STEP 4: Inside server.js, tell the app use "subscriberRouter" when a request is made to "/subscribers":
+        ========================================================================================================
             *   Previously you setup the Router so that in this step, you can tell the server to specifically use this Router.
                 ----------------------------------------------
                 app.use('/subscribers', subscriberRouter);
                 ----------------------------------------------
 
-            *   What happens here is that any request that has "subscribers" in it, such as "localhost:3000/subscribers", or anything
-                after it (i.e. "localhost:3000/subscribers/members") will be fed to the "subscribers" Router we just created.
+            *   What happens here is that any request that has "subscribers" in it, such as "localhost:3000/subscribers", 
+                or anything after it (i.e. "localhost:3000/subscribers/members") will be fed to the "subscribers" Router 
+                we just created.
 
-            *   So basically, this says that when a request comes in with "subscribers" in the url string, run "subscribeRouter", which
-                will point to the "routes" folder and then "subscribers.js" file.
+            *   So basically, this says that when a request comes in with "subscribers" in the url string, run "subscribeRouter", 
+                which will point to the "routes" folder and then "subscribers.js" file.
+
+            DEVELOPMENT NOTE: If you try to run "npm run devStart" at this point, you will get an error that says that the Router.use
+                              requires middleware.  This is because we have not added anything to our Router yet (blank at this point).
+                              This will be remedied in the next step.
+
+
+        STEP 5: Setup your router file (e.g. subscribers.js):
+        ======================================================
+            *   In your router file (e.g. subscribers.js), do the following:
+                1.   First, you need to load express.
+                2.   Second, you need to load the router from express and save as a constant named "router".
+                -----------------------------------
+                const express = require('express');
+                const router = express.Router();
+                -----------------------------------
 
 
 
@@ -488,3 +504,4 @@ https://www.tutorialkart.com/nodejs/mongoose/connect-to-mongodb/ -- connecting t
 https://medium.com/@thejasonfile/using-dotenv-package-to-create-environment-variables-33da4ac4ea8f  --  dotenv file
 https://dev.to/deammer/loading-environment-variables-in-js-apps-1p7p -- dotenv file
 https://expressjs.com/en/guide/using-middleware.html  -- middleware (express.json)
+https://scotch.io/tutorials/learn-to-use-the-new-router-in-expressjs-4 -- express router

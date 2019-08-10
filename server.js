@@ -20,7 +20,7 @@ app.use(express.json());                                                        
 
                                                                                    // Routers //
 const subscriberRouter = require('./routes/subscribers');                          // P5 --  Since this application has a subscriber api, we need to setup a Router to route subscriber information.
-app.use('/subscribers', subscriberRouter);                                         // P5 --  Then, tell the app to use the "subscriber" router 
+app.use('/subscribers', subscriberRouter);                                         // P5 --  Then, tell the app to use the "subscribersRouter" each time there is a request to the subscribers endpoint. 
 
 
 
