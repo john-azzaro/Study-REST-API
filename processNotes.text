@@ -330,23 +330,27 @@ PHASE 3: Setup your database:
                 you will want in something that is NOT local.  
             *   Additionally, you do NOT want to commit environment variables (i.e. the ".env" file).
 
-            1. First, if you havent already, create a ".env" file:
+            1.   First, if you havent already, create a ".env" file:
             
                 .env
 
-            2. Copy the database string from mongoose.connect:
+            2.  Copy the database string from mongoose.connect:
                 -------------------------------------------------------------------------------
                 mongoose.connect('mongodb://localhost/subscribers', { useNewUrlParser: true });    ==>   mongodb://localhost/subscribers
                 -------------------------------------------------------------------------------
                 
-            3. Inside the ".env" file, create a variable called DATABASE_URL and set the value to the database string
-            that we moved from server.js. 
+            3.  Inside the ".env" file, create a variable called DATABASE_URL and set the value to the database string
+                that we moved from server.js. 
                 ------------------------------------------------
                 DATABASE_URL=mongodb://localhost/subscribers
                 ------------------------------------------------
+                REMEMBER:
+                *   The variables in your .env file MUST have the format of key=value.
+                *   The variables in your .env file MUST NOT have breaks (i.e. no spaces).
+                *   The variables in your .env file MIST NOT be commited to your repository (because sensitive passwords may be in there).
 
-            4. In server.js, replace the copied database url with "process.env.DATABASE_URL" which will
-            link to the ".env" file and use the DATABASE_URL variable we just put in.
+            4.  In server.js, replace the copied database url with "process.env.DATABASE_URL" which will
+                link to the ".env" file and use the DATABASE_URL variable we just put in.
                 ---------------------------------------------------------------------------------
                 mongoose.connect('process.env.DATABSE_URL', { useNewUrlParser: true });
                 ---------------------------------------------------------------------------------
@@ -355,7 +359,7 @@ PHASE 3: Setup your database:
 
             5. Load the ".env" library in server.js
                 -----------------------------------------
-                    require('dotenv').config();
+                require('dotenv').config();
                 -----------------------------------------
 
             OPTIONAL: Check to see if you have access to your environment variables
