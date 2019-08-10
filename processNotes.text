@@ -405,6 +405,39 @@ PHASE 5: Add initial Routers:
 =============================
     *   Instead of having all our routes inside the server.js file, which can make the file cluttered and messy, we can use Routers.
     *   Routers are the seperate files that are going to hold all the routes for our application.
+    *   For a full examination of express routers, see: https://github.com/john-azzaro/Study-Express-Router
+    *   For the purposes of this study, we'll go step-by-step through process:
+
+    SHORT VERSION
+    =============
+
+    EXTENDED VERSION
+    ================
+        STEP 1: Create a "routes" folder inside your project folder.
+        ============================================================
+            *   This "routes" folder will hold all the routes for as many API's as you have for your application.
+
+                routes
+
+
+        STEP 2: In server.js setup a router to route for your specific API's:
+        ======================================================================
+            *   In this case, we have a subscribers API so we need a dedicated router to handle these routes to keep
+                the server.js file clean and tidy.
+            *   What this code does is import the router file (./routes/subscribers) and save as a constant named "subscriberRouter".
+                -----------------------------------------------------------
+                const subscriberRouter = require('./routes/subscribers');  
+                -----------------------------------------------------------
+
+
+        STEP 3: Inside "routes", create a JavaScript file that matches the same name as the Router endpoint
+        ===================================================================================================
+            *   In the case of this study, we want to have a Router file named "subscribers".
+
+                routes > subscribers.js
+
+
+
 
 
 

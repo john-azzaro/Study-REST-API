@@ -19,7 +19,8 @@ db.once('open', function() {                                                    
 app.use(express.json());                                                           //P4-1  --  This middleware allows the server to accept incoming requests as a JSON body.                                            
 
                                                                                    // Routers //
-const subscriberRouter
+const subscriberRouter = require('./routes/subscribers');                          // P5-1 --  Since this application has a subscriber api, we need to setup a Router to route subscriber information.
+
 
 
 
