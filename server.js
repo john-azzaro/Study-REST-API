@@ -1,5 +1,5 @@
 require('dotenv').config();                                                        // P3-5 --  Load "dotenv" to read data from your ".env" file (best to load this as early as possible) 
-                                                  
+
                                                                                    // Load modules //
 const express = require('express');                                                // P2.1 -- Load the express library
 const app = express();                                                             // P2.2 -- Instantiate the app using express.
@@ -14,6 +14,9 @@ db.on('error', function(error) {                                                
 db.once('open', function() {                                                       // P3.4-2 -- ... IF the connection is successful, log "Connected to Database..."
     console.log('Connected to Database...');
 });
+
+                                                                                   // Middlewares //
+app.use(express.json());                                                           //P4-1  --  This middleware allows the server to accept incoming requests as a JSON body.                                            
 
                                                                                    // Server connection //
 app.listen(3000, function() {                                                      // P2.3 -- listen on port 300 for 

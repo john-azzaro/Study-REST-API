@@ -367,14 +367,26 @@ PHASE 3: Setup your database:
 
 PHASE 4: Add initial middleware:
 =====================================
+    *   Middlewares are code that run when the server gets a request but BEFORE that request gets sent to your application routes.
+    *   There are many middlewares that can be used in your stack, running one after the other, including built-in, third-party, 
+        and custom middleware.
+
     SHORT VERSION
     =============
 
     EXTENDED VERSION
     ================
-
-
         STEP 1: Setup server to accept JSON:
+        =======================================================================
+            *   One of the first important middlewares to use is a built-in middleware called express.json, which allows
+                the server to accept incoming requests as a JSON body rather than a POST, GET, etc. element.
+                -------------------------------
+                app.use(express.json());
+                -------------------------------
+
+
+
+PHASE 5:
 
 
 
