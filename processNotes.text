@@ -14,7 +14,7 @@ Restful API design study
     P1: Project Setup                           -- Create folder, install dependencies, install developer dependencies, create initial 
                                                     application files (e.g. server.js, etc.).
     P2: Create Basic Server                     -- Load Express library, instantiate app, and create server in server.js.
-    P3: Connect Mongoose to MongoDB             -- 
+    P3: Setup your database:                    -- Load mongoose, connect to mongodb, verify connection logic, create .env file.
 
 
 
@@ -209,158 +209,172 @@ PHASE 2: Create the BASIC server:
                     --------------------------------------------------------------------------------------------
 
 
-PHASE 3: Configure Mongoose to connect with Mongo database
-===========================================================
+PHASE 3: Setup your database:
+=============================
     *   To use a database to store your data (as opposed to static storage which clears every time you restart 
         your app), you need to utilize "mongoose", a dependency you installed earlier which helps connect Your
         application with your mongoDB database.
 
+    SHORT VERSION
+    ==============
+        1. Load mongoose.
+        2. Connect to mongodb.
+        3. Resolve any deprecation warnings.
+        4. Add connection verification logic.
+        5. Relocate database string into .env file.
 
-    STEP 1: Load the "mongoose" library:
-    ====================================
-        *   Assuming you already added mongoose to your list of dependencies, load the library into your project.
-            --------------------------------------------
-            const mongoose = require('mongoose');
-            --------------------------------------------
-
-
-    STEP 2.1: Connect to the Mongo Database:
-    ======================================
-        *   Then, simply connect to your MongoDB database!
-        *   Note that this can be either localhost or hosted (in this study, its localhost).
-        *   Below, we are connecting to mongoDB via mongoose with a database connection string that links to:
-
-       Database string =   databas      local storage    database name
-                                \            |            /
-            -------------------------------------------------------
-            mongoose.connect('mongodb://localhost/subscribers');
-            -------------------------------------------------------
-
-            DEVELOPMENT NOTE: The string above is TEMPORARY because it is only for the localhost.  We'll want
-                              the database hosted later on with environment variables (see STEP 5);
+    EXTENDED VERSION
+    ================     
+        STEP 1: Load the "mongoose" library:
+        ====================================
+            *   Assuming you already added mongoose to your list of dependencies, load the library into your project.
+                --------------------------------------------
+                const mongoose = require('mongoose');
+                --------------------------------------------
 
 
-    STEP 2.2: Resolve deprecation warning:
-    ======================================
-        *   When you run "npm run devStart", you will see a "deprecation warning", meaning that some technology is being
-            phased out or suspended.  In the case of this study, the deprecation is for "URL string parser".
+        STEP 2.1: Connect to the Mongo Database:
+        ======================================
+            *   Then, simply connect to your MongoDB database!
+            *   Note that this can be either localhost or hosted (in this study, its localhost).
+            *   Below, we are connecting to mongoDB via mongoose with a database connection string that links to:
 
-            -------------------------------------------------------------------------------------------------------
-            
-            $ npm start devStart
+        Database string =   databas      local storage    database name
+                                    \            |            /
+                -------------------------------------------------------
+                mongoose.connect('mongodb://localhost/subscribers');
+                -------------------------------------------------------
 
-            > study-restful-api-design@1.0.0 start C:\Users\Admin\Desktop\Study-RESTful-API-Design
-            > node server.js "devStart"
-
-            (node:1704) DeprecationWarning: current URL string parser is deprecated, and will be removed in a 
-            future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
-            Your app is litening on Port 3000...
-
-            --------------------------------------------------------------------------------------------------------
-
-        *   To remedy this deprecation warning for the URL string parser, the warning asks you to pass in the 
-            option "{ useNewUrlParser: true }" to "MongoClient.connect" because the old one is deprecated.
-
-        *   All this means is we need to add an additional parameter to mongoose.connect with this option.
-
-       Database string =   database       local storage    database name          passed in option
-                                \            |            /                        /
-            ---------------------------------------------------------------------------------
-            mongoose.connect('mongodb://localhost/subscribers', { useNewUrlParser: true });
-            ----------------------------------------------------------------------------------
+                DEVELOPMENT NOTE: The string above is TEMPORARY because it is only for the localhost.  We'll want
+                                the database hosted later on with environment variables (see STEP 5);
 
 
-    STEP 3: Connect to your database:
-    =================================
-        *   This simply means that you are connecting (i.e. getting a reference) to the specified database (i.e. subscribers):
-            -------------------------------------
-            const db = mongoose.connection;
-            -------------------------------------
+        STEP 2.2: Resolve deprecation warning:
+        ======================================
+            *   When you run "npm run devStart", you will see a "deprecation warning", meaning that some technology is being
+                phased out or suspended.  In the case of this study, the deprecation is for "URL string parser".
 
-    
-    STEP 4: Verify that your database connection is working properly:
-    ================================================================
-        *   This is important because it will show is the connection to the database was successful or not.
+                -------------------------------------------------------------------------------------------------------
+                
+                $ npm start devStart
 
-        *   First, if there is UNSUCCESSFUL (i.e. an error occured and something went wrong with the connection), 
-            log out an error with an error object:
-            ---------------------------------
-            db.on('error', function() {
-                console.error(error);
-            });
-            ---------------------------------
+                > study-restful-api-design@1.0.0 start C:\Users\Admin\Desktop\Study-RESTful-API-Design
+                > node server.js "devStart"
 
-        *   Second, if connection is SUCCESSFUL (i.e. once the connection is successful):
-            *   Note: The "once" in db.once means that it will only run once.
-            ---------------------------------------------
-            db.once('error', function() {
-                console.log('Connected to Database...');
-            });
-            ---------------------------------------------
+                (node:1704) DeprecationWarning: current URL string parser is deprecated, and will be removed in a 
+                future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
+                Your app is litening on Port 3000...
 
-        *   When you run "npm run devStart", you will see the following if the connection was successful:
-            ---------------------------------------------------------------------------------------------
-            $ npm run devStart
+                --------------------------------------------------------------------------------------------------------
 
-            > study-restful-api-design@1.0.0 devStart C:\Users\Admin\Desktop\Study-RESTful-API-Design
-            > nodemon server.js
+            *   To remedy this deprecation warning for the URL string parser, the warning asks you to pass in the 
+                option "{ useNewUrlParser: true }" to "MongoClient.connect" because the old one is deprecated.
 
-            [nodemon] 1.19.1
-            [nodemon] to restart at any time, enter `rs`
-            [nodemon] watching: *.*
-            [nodemon] starting `node server.js`
-            Your app is litening on Port 3000...
-            Connected to Database...                                                                       <== successful connection to database
+            *   All this means is we need to add an additional parameter to mongoose.connect with this option.
 
-            ---------------------------------------------------------------------------------------------
+        Database string =   database       local storage    database name          passed in option
+                                    \            |            /                        /
+                ---------------------------------------------------------------------------------
+                mongoose.connect('mongodb://localhost/subscribers', { useNewUrlParser: true });
+                ----------------------------------------------------------------------------------
 
 
-    STEP 5: Relocate database string to .env file so we can use localhost AND external host later:
-    ==============================================================================================
-        *   While in development, having the database locally is ideal.  However, when you deploy the application
-            you will want in something that is NOT local.  
-        *   Additionally, you do NOT want to commit environment variables (i.e. the ".env" file).
+        STEP 3: Connect to your database:
+        =================================
+            *   This simply means that you are connecting (i.e. getting a reference) to the specified database (i.e. subscribers):
+                    -------------------------------------
+                    const db = mongoose.connection;
+                    -------------------------------------
 
-        1. First, if you havent already, create a ".env" file:
         
-            .env
+        STEP 4: Verify that your database connection is working properly:
+        ================================================================
+            *   This is important because it will show is the connection to the database was successful or not.
 
-        2. Copy the database string from mongoose.connect:
-            -------------------------------------------------------------------------------
-            mongoose.connect('mongodb://localhost/subscribers', { useNewUrlParser: true });    ==>   mongodb://localhost/subscribers
-            -------------------------------------------------------------------------------
+            *   First, if there is UNSUCCESSFUL (i.e. an error occured and something went wrong with the connection), 
+                log out an error with an error object:
+                    ---------------------------------
+                    db.on('error', function() {
+                        console.error(error);
+                    });
+                    ---------------------------------
+
+            *   Second, if connection is SUCCESSFUL (i.e. once the connection is successful):
+                *   Note: The "once" in db.once means that it will only run once.
+                    ---------------------------------------------
+                    db.once('error', function() {
+                        console.log('Connected to Database...');
+                    });
+                    ---------------------------------------------
+
+            *   When you run "npm run devStart", you will see the following if the connection was successful:
+                    ---------------------------------------------------------------------------------------------
+                    $ npm run devStart
+
+                    > study-restful-api-design@1.0.0 devStart C:\Users\Admin\Desktop\Study-RESTful-API-Design
+                    > nodemon server.js
+
+                    [nodemon] 1.19.1
+                    [nodemon] to restart at any time, enter `rs`
+                    [nodemon] watching: *.*
+                    [nodemon] starting `node server.js`
+                    Your app is litening on Port 3000...
+                    Connected to Database...                                                                       <== successful connection to database
+
+                    ---------------------------------------------------------------------------------------------
+
+
+        STEP 5: Relocate database string to .env file so we can use localhost AND external host later:
+        ==============================================================================================
+            *   While in development, having the database locally is ideal.  However, when you deploy the application
+                you will want in something that is NOT local.  
+            *   Additionally, you do NOT want to commit environment variables (i.e. the ".env" file).
+
+            1. First, if you havent already, create a ".env" file:
             
-        3. Inside the ".env" file, create a variable called DATABASE_URL and set the value to the database string
-           that we moved from server.js. 
-           ------------------------------------------------
-           DATABASE_URL=mongodb://localhost/subscribers
-           ------------------------------------------------
+                .env
 
-        4. In server.js, replace the copied database url with "process.env.DATABASE_URL" which will
-           link to the ".env" file and use the DATABASE_URL variable we just put in.
-           ---------------------------------------------------------------------------------
-           mongoose.connect('process.env.DATABSE_URL', { useNewUrlParser: true });
-           ---------------------------------------------------------------------------------
+            2. Copy the database string from mongoose.connect:
+                -------------------------------------------------------------------------------
+                mongoose.connect('mongodb://localhost/subscribers', { useNewUrlParser: true });    ==>   mongodb://localhost/subscribers
+                -------------------------------------------------------------------------------
+                
+            3. Inside the ".env" file, create a variable called DATABASE_URL and set the value to the database string
+            that we moved from server.js. 
+                ------------------------------------------------
+                DATABASE_URL=mongodb://localhost/subscribers
+                ------------------------------------------------
 
-           * Note that if you try to run this, you will get an error.
-           * This is becasue we have NOT loaded the ".env" library
+            4. In server.js, replace the copied database url with "process.env.DATABASE_URL" which will
+            link to the ".env" file and use the DATABASE_URL variable we just put in.
+                ---------------------------------------------------------------------------------
+                mongoose.connect('process.env.DATABSE_URL', { useNewUrlParser: true });
+                ---------------------------------------------------------------------------------
+                * Note that if you try to run this, you will get an error.
+                * This is becasue we have NOT loaded the ".env" library
 
-        5. Load the ".env" library in server.js
-           -----------------------------------------
-            require('dotenv').config();
-           -----------------------------------------
+            5. Load the ".env" library in server.js
+                -----------------------------------------
+                    require('dotenv').config();
+                -----------------------------------------
 
-        OPTIONAL: Check to see if you have access to your environment variables
-            * Note: You can check to see if you have access to your environment variables via the process.env object
-            ----------------------------------------
-            console.log(process.env);
-            ----------------------------------------
-
-
+            OPTIONAL: Check to see if you have access to your environment variables
+                * Note: You can check to see if you have access to your environment variables via the process.env object
+                ----------------------------------------
+                console.log(process.env);
+                ----------------------------------------
 
 
+PHASE 4: Add initial middleware:
+=====================================
+    SHORT VERSION
+    =============
+
+    EXTENDED VERSION
+    ================
 
 
+        STEP 1: Setup server to accept JSON:
 
 
 
