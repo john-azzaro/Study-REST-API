@@ -410,6 +410,10 @@ PHASE 5: Add initial Routers:
 
     SHORT VERSION
     =============
+        1. Create "routes" folder.
+        2. Setup router to route requests for a given API (i.e. subscribers).
+        3. Create a Router file (inside "routes") that matches the previous loaded router.
+        4. Tell the app to use the Router for incoming requests to that route.
 
     EXTENDED VERSION
     ================
@@ -420,8 +424,8 @@ PHASE 5: Add initial Routers:
                 routes
 
 
-        STEP 2: In server.js setup a router to route for your specific API's:
-        ======================================================================
+        STEP 2: In server.js setup a router to load the Router for your specific API's:
+        ================================================================================
             *   In this case, we have a subscribers API so we need a dedicated router to handle these routes to keep
                 the server.js file clean and tidy.
             *   What this code does is import the router file (./routes/subscribers) and save as a constant named "subscriberRouter".
@@ -430,11 +434,27 @@ PHASE 5: Add initial Routers:
                 -----------------------------------------------------------
 
 
-        STEP 3: Inside "routes", create a JavaScript file that matches the same name as the Router endpoint
+        STEP 3: Inside "routes", create a JavaScript file that matches the same name as the Router endpoint:
         ===================================================================================================
             *   In the case of this study, we want to have a Router file named "subscribers".
+            *   IMPORTANT: The name of the file in "routes" MUST match the endpoint filename.
 
                 routes > subscribers.js
+
+
+        STEP 4: Inside server.js, tell the app we want to use the route we have just setup:
+        ==================================================================================
+            *   Previously you setup the Router so that in this step, you can tell the server to specifically use this Router.
+                ----------------------------------------------
+                app.use('/subscribers', subscriberRouter);
+                ----------------------------------------------
+
+            *   What happens here is that any request that has "subscribers" in it, such as "localhost:3000/subscribers", or anything
+                after it (i.e. "localhost:3000/subscribers/members") will be fed to the "subscribers" Router we just created.
+
+            *   So basically, this says that when a request comes in with "subscribers" in the url string, run "subscribeRouter", which
+                will point to the "routes" folder and then "subscribers.js" file.
+
 
 
 
