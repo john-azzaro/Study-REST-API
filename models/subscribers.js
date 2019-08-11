@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');                            // P6  --  Load mongoose so that we can interact with the database.
+const mongoose = require('mongoose');                            // P7  --  Load mongoose so that we can interact with the database.
  
 const subscriberSchema = new mongoose.Schema({                   // P7  --  For the subscriberSchema, 
     name: {                                                      // P7  --  The name must...
@@ -15,3 +15,5 @@ const subscriberSchema = new mongoose.Schema({                   // P7  --  For 
         default: Date.now                                        // P7  --  ... and the date of subscrption is the current date of subscription
     }
 });
+
+module.export = mongoose.model('Subscriber', subscriberSchema);  // P7  --  Export the schema above to interact directly with the database.

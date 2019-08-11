@@ -696,8 +696,34 @@ PHASE 7: Create a Mongoose Model (i.e. schema):
                 -----------------------------------------------------------------
 
                 module.export = mongoose.model('Subscriber', subscriberSchema);
-                
+
                 -----------------------------------------------------------------
+
+
+        STEP 8: Now that the schema is setup, you can include it in your Route file!
+        =============================================================================
+            *   In the Route page subscribers.js, all you need to do is load the schema we just made above (e.g. "Subscriber" ), and
+                the route to get to the subscribers.js model.
+            *   Note that the location of the model requires you to go back one folder from the subscribers.js routes in order to load it,
+                so in order to do so, you use "../" to go back one folder and then input the rest of the path.
+
+                ------------------------------------------------------
+
+                const Subscriber = require('../models/subscribers'); 
+                
+                ------------------------------------------------------
+                
+
+
+
+
+
+
+
+
+
+
+
 
 
 
