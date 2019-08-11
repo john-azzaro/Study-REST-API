@@ -480,7 +480,67 @@ PHASE 5: Setup Router(s):
 
 PHASE 6: Create Routes:
 ========================
+    SHORT VERSION
+    =============
+        1. Create a GET route.
+        2.
+        3.
+        4.
 
+    EXTENDED VERSION
+    ================
+        *   For the routes, we want the following CRUD operations:
+            1. CREATE a subscriber     
+            2. READ a subscriber        
+            3. READ all subscribers    
+            4. UPDATE a subscriber     
+            5. DELETE a subscriber     
+
+        DEVELOPMENT NOTE: It's useful to put comment all of these routes in your route document so you have a 
+                        broad idea of what routes you need to include.
+                            --------------------------------
+                            // GET ALL subscribers
+                            // GET One subscriber
+                            // CREATE subscriber
+                            // UPDATE subsrcriber
+                            // DELETE Subscriber
+                            --------------------------------
+
+        STEP 1: First, create your pseudo code for all the routes:
+        ===========================================================
+            *   REMEMBER: If you were creating the route inside the server.js file, you would be using "app.get".  However,
+                now we are using the router part of express, we call "router".
+
+            ---------------------------------------------------------------------
+            
+            // GET ALL subscribers
+            router.get('/', function(req, res) {                             <== for all, we want the direct path.
+
+            });
+
+            // GET One subscriber                                            <== to get one subscriber, we need to get the :id of the subscriber.
+            router.get('/:id', function(req, res) {
+
+            });
+
+            // CREATE subscriber
+            router.get('/', function(req, res) {
+
+            });
+
+            // UPDATE subsrcriber
+            router.get('/', function(req, res) {
+
+            });
+
+            // DELETE Subscriber
+            router.get('/', function(req, res) {
+
+            });
+
+            ---------------------------------------------------------------------
+
+ 
 
 
 
