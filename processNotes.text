@@ -17,7 +17,8 @@ Restful API design study
     P2: Create Basic Server                     --   Load Express library, instantiate app, and create server in server.js.
     P3: Setup database connection               --   Load mongoose, connect to mongodb, verify connection logic, create .env file.
     P4: Setup initial middleware                --   Add built-in middleware like express.json (lets out server accept JSON as a body).
-    P5: Setup Routers                           --   
+    P5: Setup Router(s)                         --   Create route folder, Setup Router in server.js, create Route file(s) in routes folder, use given routes, setup route files.
+    P6: Create Routes in Router(s)              --   
 
 
 
@@ -401,8 +402,8 @@ PHASE 4: Add initial middleware:
 
 
 
-PHASE 5: Add initial Routers:
-=============================
+PHASE 5: Setup Router(s):
+=========================
     *   Instead of having all our routes inside the server.js file, which can make the file cluttered and messy, we can use Routers.
     *   Routers are the seperate files that are going to hold all the routes for our application.
     *   For a full examination of express routers, see: https://github.com/john-azzaro/Study-Express-Router
@@ -477,7 +478,8 @@ PHASE 5: Add initial Routers:
                 -----------------------------------
 
 
-
+PHASE 6: Create Routes:
+========================
 
 
 
