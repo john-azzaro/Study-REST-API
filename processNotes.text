@@ -518,7 +518,7 @@ PHASE 6: Create Routes:
 
             });
 
-            // GET One subscriber                                            <== to get one subscriber, we need to get the :id of the subscriber.
+            // GET One subscriber                                            <== to get one subscriber, we need to add the :id  parameter (represents the subscriber).
             router.get('/:id', function(req, res) {
 
             });
