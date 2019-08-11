@@ -575,7 +575,25 @@ PHASE 6: Create Routes:
 
                 
 
-PHASE 
+PHASE 7: Create a model(s) for the application:
+===============================================
+    *   In the case of this study, we need a subscriber model to format each subsriber in our database.
+
+    SHORT VERSION
+    =============
+
+
+    EXTENDED VERSION
+    ================
+        STEP 1: Create a "models" folder:
+        ================================
+
+        models
+
+        STEP 2: Inside the "models" foler, create a subscriber model (i.e. subscribers.js):
+        ===================================================================================
+
+        models  >  subscribers.js
 
 
 
