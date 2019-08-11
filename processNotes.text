@@ -551,14 +551,16 @@ PHASE 6: Create Routes:
 
             OPTIONAL: Test your routes using "res.send('')":
             ================================================
-                *   To test the routes you just created, open up Postman and test a route.
-                *   For example, add the following to the body of your GET all route.
+                *   To test the basic GET routes you just created, open up Postman and test a route.
+                *   For example:
+
+                    1. For GET all route:
                     ----------------------------------
-                    res.send('This is a test');
+                    res.send('This is a test');            ==>   http://localhost:3000/subscribers  ==>  will send contents of /subscribers!
                     ----------------------------------
-                *   Then, in Postman sens a GET request to "localhost:3000/subscribers" and you shoudl get a response that says:
+                    2. For GET one route:
                     ----------------------------------
-                    This is a test
+                    res.send(req.params.id);               ==>   http://localhost:3000/subscribers/12   =>  will send the contents of matching id!
                     ----------------------------------
 
                 *   You can also use the "REST Client" add-on for VSCode, which will allow you to test your routes inside the editor instead
@@ -569,8 +571,11 @@ PHASE 6: Create Routes:
                     -----------------------------------------------
                     hover over that line of code and you will see a "send request".  Click this and you will get a response in the form of the HTTP object!
 
+                    Additionally, you can add three hashtags (i.e. ###) between each request to seperate additional routes.
 
+                
 
+PHASE 
 
 
 
