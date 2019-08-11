@@ -575,9 +575,11 @@ PHASE 6: Create Routes:
 
                 
 
-PHASE 7: Create a model(s) for the application:
+PHASE 7: Create a Mongoose Model (i.e. schema):
 ===============================================
-    *   In the case of this study, we need a subscriber model to format each subsriber in our database.
+    *   A mongoose model allows you to access data from MongoDB in an object-oriented fashion.
+    *   To create a model, you first need to define a schema for it.
+    *   
 
     SHORT VERSION
     =============
@@ -590,14 +592,60 @@ PHASE 7: Create a model(s) for the application:
 
         models
 
-        STEP 2: Inside the "models" foler, create a subscriber model (i.e. subscribers.js):
+
+        STEP 2: In the "models" folder, create a subscriber model (i.e. subscribers.js):
         ===================================================================================
 
         models  >  subscribers.js
 
 
+        STEP 3: In the new models file (i.e. subscribers.js), load mongoose:
+        ====================================================================
+            *   When we use mongooss in this model file, it allows us to create a model that can be used to interact
+                with the mongo database.
+                ----------------------------------------------
+                const mongoose = require('mongoose');
+                ----------------------------------------------
 
 
+        STEP 4: Create a schema (i.e. a "subscriber") for the model (e.g. "subscriber"):
+        ================================================================================
+            *   This schema is essentially the scaffold that all of our subscriber models are going to take.
+            *   Note that this schema will create an OBJECT (i.e. {...}) with mutliple properties, which themselves are objects.
+                -------------------------------------------------------
+
+                const subscriberSchema = new mongoose.Schema({
+                    // properties go here
+                });  
+
+                -------------------------------------------------------  
+
+
+        STEP 5: In the body of your schema, put in the properties of your model (e.g. subscriber):
+        ==========================================================================================
+            *   So this would essentially be all the properties you want your model to hold.
+            *   In each case of these properties, the property is also an object.
+            *   In the case of this study, we want a schema of a subscriber, which could have:
+                    1.   name
+                    2.   subscriberChannel
+                    3.   subscribedDate
+
+
+                -----------------------------------------------------------------
+
+                const subscriberSchema = new mongoose.Schema({
+                    name: {                                                     <== name property
+
+                    },
+                    subscriberChannel: {                                        <== channel subscriber to property
+
+                    },
+                    subscriberDate: {                                           <== subscribed date property
+                        
+                    }
+                });
+
+                -----------------------------------------------------------------
 
 
 
@@ -621,3 +669,6 @@ https://medium.com/@thejasonfile/using-dotenv-package-to-create-environment-vari
 https://dev.to/deammer/loading-environment-variables-in-js-apps-1p7p -- dotenv file
 https://expressjs.com/en/guide/using-middleware.html  -- middleware (express.json)
 https://scotch.io/tutorials/learn-to-use-the-new-router-in-expressjs-4 -- express router
+https://mongoosejs.com/docs/guide.html  -- schema documentation
+https://code.tutsplus.com/articles/an-introduction-to-mongoose-for-mongodb-and-nodejs--cms-29527  -- good overview, schema guide
+https://thinkster.io/tutorials/node-json-api/creating-the-user-model  -- schema model example
