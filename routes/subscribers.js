@@ -3,7 +3,7 @@ const router = express.Router();                                 //  P.5-5  --  
 
 // GET ALL subscribers
 router.get('/', function(req, res) {                             //  P.6  --  Get all subscribers (on general route "/")  
-
+    res.send('This is a test of the get all route...');
 });
 
 // GET One subscriber                                             
