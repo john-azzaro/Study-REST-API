@@ -648,7 +648,56 @@ PHASE 7: Create a Mongoose Model (i.e. schema):
                 -----------------------------------------------------------------
 
 
+        STEP 6: Define the properties in your schema:
+        ==============================================
+            *   For each of the properties in your schema, you want to define the properties that will compose the schema.
+            *   For example, in the property "name" you want to make sure that the "type" is "String" because you want letters and
+                numbers and nothing else, and because you ALWAYS want to have a name to associate with the subscriber, you need to
+                have "required: true".   The same applies to the subscriberChannel as well.
+            *   For the sibscriberDate, we use Date and set the default value to the current date of subscription.
 
+                ----------------------------------------------------------------------
+
+                const subscriberSchema = new mongoose.Schema({
+                    name: {                                                             
+                        type: String,
+                        required: true
+                    },
+                    subscriberChannel: {
+                        type: String,
+                        required: true
+                    },
+                    subscriberDate: {
+                        type: Date,
+                        required: true,
+                        default: Date.now
+                    }
+                });
+
+                ----------------------------------------------------------------------
+
+        
+        STEP 7: Export this schema for use in the database:
+        ===================================================
+            *   To export module, you need to first export the module with "module.export".
+            *   Then, use the mongoose.model function so that when we export this schema and import it to another file, the model
+                will allow us to interact directly with the database using the specified schema.
+
+            *   And lastly, mongoose.model uses two properties: 
+                    1. The name of the model
+                    2. The schema that corresponds to that model.
+
+                export the module                       name of the model
+                            \                                |
+                        module.export = mongoose.model('Subscriber', subscriberSchema);
+                                            |                                  \
+                                used to interact with database              corressonding schema
+
+                -----------------------------------------------------------------
+
+                module.export = mongoose.model('Subscriber', subscriberSchema);
+                
+                -----------------------------------------------------------------
 
 
 
@@ -672,3 +721,4 @@ https://scotch.io/tutorials/learn-to-use-the-new-router-in-expressjs-4 -- expres
 https://mongoosejs.com/docs/guide.html  -- schema documentation
 https://code.tutsplus.com/articles/an-introduction-to-mongoose-for-mongodb-and-nodejs--cms-29527  -- good overview, schema guide
 https://thinkster.io/tutorials/node-json-api/creating-the-user-model  -- schema model example
+https://mongoosejs.com/docs/api/model.html#model_Model  --  mongoose.model
