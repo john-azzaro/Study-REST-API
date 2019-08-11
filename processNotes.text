@@ -482,8 +482,8 @@ PHASE 6: Create Routes:
 ========================
     SHORT VERSION
     =============
-        1. Create a GET route.
-        2.
+        1. Create route pseudo-code shell.
+        2. 
         3.
         4.
 
@@ -506,8 +506,8 @@ PHASE 6: Create Routes:
                             // DELETE Subscriber
                             --------------------------------
 
-        STEP 1: First, create your pseudo code for all the routes:
-        ===========================================================
+        STEP 1: First, create your pseudo code "shell" for all the routes:
+        ==================================================================
             *   REMEMBER: If you were creating the route inside the server.js file, you would be using "app.get".  However,
                 now we are using the router part of express, we call "router".
 
@@ -523,23 +523,30 @@ PHASE 6: Create Routes:
 
             });
 
-            // CREATE subscriber
-            router.get('/', function(req, res) {
+            // CREATE subscriber                                             <== Create a subscriber on the general route.
+            router.post('/', function(req, res) {
 
             });
 
-            // UPDATE subsrcriber
-            router.get('/', function(req, res) {
+            // UPDATE subscriber
+            router.patch('/:id', function(req, res) {                        <== update with "patch" so we update only what the user passes with the :id parameter
 
             });
 
-            // DELETE Subscriber
-            router.get('/', function(req, res) {
+            // DELETE Subscriber                                             <== delete with user id parameter.
+            router.delete('/:id', function(req, res) {
 
             });
 
             ---------------------------------------------------------------------
 
+            DEVELOPMENT NOTES: 
+                *   For GET (all) requests, we want to use the direct path "/" because thats where all of our subscribers will be.
+                *   For GET (one) requests, we want to use the direct path + the id (i.e. /:id) parameter so that we can select a specific subscriber.
+                *   For POST (one) requests, we want to use the direct path "/" because that is where we want to place our new user.
+                *   For PATCH (update) requests, we want only update what the user passes (i.e. username, etc.) and not any other information.
+                        *   If you you use a PUT request, it will update EVERYTHING, which we do not want to do in this scenario.
+                *   For DELETE (one) requests, we want to use the direct path + the id (same as GET one).
  
 
 
