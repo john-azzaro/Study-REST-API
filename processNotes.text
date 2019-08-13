@@ -721,12 +721,84 @@ PHASE 7: Create a Mongoose Model (i.e. schema):
                 ------------------------------------------------------
 
 
-  PHASE 8: Create GET route in subscriber.js(Routes):
-  ===================================================
-                 
+PHASE 8: Create GET route in subscriber.js(Routes):
+===================================================
+    *   In this phase, we'll start added the routes for our application.
+    *   Note that we'll be using "async/await" which will allow us to use our single threaded application with multiple requests
+        in an efficient and modern way.
+
+    SHORT VERSION
+    =============
+
+    EXTENDED VERSION
+    ================
+        STEP 0: Start with GET (all) route:
+        ===================================
+                ----------------------------------------------------------
+                
+                router.get('/', function(req, res) { 
+                   
+                });
+
+                ----------------------------------------------------------
 
 
+        STEP 1: Setup your async/await function with the async modifer and a try/catch block:
+        =====================================================================================
+            *   For an async/await function, you first need to add 2 things:
+                1.  Add the "async" modifier to your function.        
+                2.  Within the block of the function, add a try/catch block for catching errors.      
+                ----------------------------------------------------------
+                
+                router.get('/', async function(req, res) {                 <== add the "async" modifier
+                    try{                                                   <== add a try block
 
+                    } catch (err) {                                        <== add a catch block
+
+                    }
+                });
+
+                ----------------------------------------------------------   
+
+
+        STEP 2: Add your logic for the try block: 
+        =========================================
+            *   In the case of this study, we want to get all the subscribers for the model.
+            *   The logic of getting subscribers will go like this:
+
+                A. TRY this code
+                    1.  We want to get all the subscribers and, when the subscribers are ready (using "await" which is and
+                        asynchronous method).  To do this,  we set "subscribers" is equal to the Subscriber model (see phase 7) 
+                        and the .find method (this will find all the subscribers) and add "await" so that when it is done we 
+                        can get the subscribers.
+                        Then, we send the response as JSON with the subscribers we defined above.
+                        --------------------------------------------
+                        const subscribers = await Subscriber.find();
+                        res.json(subscribers); 
+                        -------------------------------------------
+                    2. 
+                B. CATCH if there is an error
+                    1.  If there is an error, first send a status code of 500 (error on the server, the database caused the 
+                        problem).and then send a response in json form (because this is a json application) with a message object 
+                        and the message.
+                        --------------------------------------------
+                        res.status(500).json( {message: err.message} ); 
+                        --------------------------------------------
+
+            *   The final code block will look like this: 
+                    
+                ----------------------------------------------------------
+                
+                router.get('/', async function(req, res) {                 
+                    try{                                                   
+                        const subscribers = await Subscriber.find();   
+                        res.json(subscribers);                   
+                    } catch (err) {                                              
+                       res.status(500).json( {message: err.message} ); 
+                    }
+                });
+
+                ----------------------------------------------------------   
 
 
 
