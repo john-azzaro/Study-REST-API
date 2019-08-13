@@ -11,8 +11,8 @@ const db = mongoose.connection;                                                 
 db.on('error', function(error) {                                                   // P3.4-1 -- ... IF there is an ERROR connecting to database, log the error object.
     console.error(error);
 });
-db.once('open', function() {                                                       // P3.4-2 -- ... IF the connection is successful, log "Connected to Database..."
-    console.log('Connected to Database...');
+db.once('open', function() {                                                       // P3.4-2 -- ... IF the connection is successful, log "Connected to Mongoose..." which is your database.
+    console.log('Connected to Mongoose...');
 });
 
                                                                                    // Middlewares //

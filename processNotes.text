@@ -578,12 +578,19 @@ PHASE 6: Create Routes:
 PHASE 7: Create a Mongoose Model (i.e. schema):
 ===============================================
     *   A mongoose model allows you to access data from MongoDB in an object-oriented fashion.
-    *   To create a model, you first need to define a schema for it.
-    *   
+    *   In this study example, we need to create a model for user which we can use for the application.
+    *   To create a model, you first need to define a schema for it. 
 
     SHORT VERSION
     =============
-
+        1.  Create "models" folder.
+        2.  Create a "subscriber.js" file inside "models" folder.
+        3.  Load mongoose.
+        4.  Create your new schema.
+        5.  Map out the main properties of your schema.
+        6.  Define each of the properties you just listed. 
+        7.  Export schema so it can be used in the application.
+        8.  
 
     EXTENDED VERSION
     ================
@@ -712,7 +719,11 @@ PHASE 7: Create a Mongoose Model (i.e. schema):
                 const Subscriber = require('../models/subscribers'); 
                 
                 ------------------------------------------------------
-                
+
+
+  PHASE 8: Create GET route in subscriber.js(Routes):
+  ===================================================
+                 
 
 
 
