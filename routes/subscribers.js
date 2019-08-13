@@ -1,6 +1,6 @@
 const express = require('express');                              //  P.5  --  Load the express library for this file.
 const router = express.Router();                                 //  P.5  --  Load the router part of express.
-const Subscriber = require('../models/subscribers');             //  P7  --  Include your model in this main route file (note the ".." so that you go back one folder to use "models").
+const Subscriber = require('../models/subscriber');             //  P7  --  Include your model in this main route file (note the ".." so that you go back one folder to use "models").
 
 // GET ALL subscribers
 router.get('/', async function(req, res) {                       //  P.6/8  --  Get all subscribers (on general route "/") and add the "async" modifer 
