@@ -721,10 +721,10 @@ PHASE 7: Create a Mongoose Model (i.e. schema):
                 ------------------------------------------------------
 
 
-PHASE 8: Create GET route in subscriber.js(Routes):
+PHASE 8: Create GET route in subscribers.js(Routes):
 ===================================================
-    *   In this phase, we'll start added the routes for our application.
-    *   Note that we'll be using "async/await" which will allow us to use our single threaded application with multiple requests
+    *   In this phase, we'll start added the routes for our application using the "Subcriber" model.
+    *   Note: We'll be using "async/await" which will allow us to use our single threaded application with multiple requests
         in an efficient and modern way.
 
     SHORT VERSION
@@ -800,6 +800,10 @@ PHASE 8: Create GET route in subscriber.js(Routes):
 
                 ----------------------------------------------------------   
 
+
+PHASE 9: Create a POST route in Subscribers.js (Routes):
+========================================================
+    *   
 
 
 

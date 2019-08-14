@@ -16,4 +16,6 @@ const subscriberSchema = new mongoose.Schema({                   // P7  --  For 
     }
 });
 
-module.export = mongoose.model('Subscriber', subscriberSchema);  // P7  --  Export the schema above to interact directly with the database.
+module.exports = mongoose.model('Subscriber', subscriberSchema);  // P7  --  Export the schema above to interact directly with the database.
+
+
