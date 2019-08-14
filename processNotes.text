@@ -801,6 +801,16 @@ PHASE 8: Create GET route in subscribers.js(Routes):
                 ----------------------------------------------------------   
 
 
+        OPTIONAL: Test your route in Postman:
+        =====================================
+            *   When you test your route in Postman (i.e. localhost:3000/subscribers), you should get the following:
+                -----------------------
+                []
+                -----------------------
+            *   You get an empty array because you dont have any subscribers yet but what is important is that the route works.
+
+
+            
 PHASE 9: Create a POST route in Subscribers.js (Routes):
 ========================================================
     *   
