@@ -26,8 +26,8 @@ router.post('/', async function(req, res) {                      //  P.6/9  -- C
     try {                                                        //  P.9  --  Then when you have your subscriber, you want to save it to the database
         const newSubscriber = await Subscriber.save();           //  P.9  --  If successful, when the Subscriber is ready (i.e. awaiting the async function to complete), then SAVE....
         res.status(201).json(newSubscriber);                     //  P.9  --  Then send "newSubscriber" as a json object with the status of 201 (this means an object was created successfully)
-    } catch (err) {
-
+    } catch (err) {                                              //  P.9  --  IF the request was unsuccessful...
+        res.status(400).json({ message: err.message});           //  P.9  --  ... send a response with a status of 500 (i.e. error on the server) and the message object.
     }
 });
 

@@ -841,6 +841,7 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
         });
         -----------------------------------------------------
 
+
         STEP 2: Create a variable called subscriber and create a "new Subscriber" that takes a JavaScript object:
         =========================================================================================================
         ------------------------------------------------------
@@ -850,6 +851,7 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
             }); 
         });
         ------------------------------------------------------
+
 
         STEP 3: Add the properties that the user will send you for the new subscriber:
         ==============================================================================
@@ -870,6 +872,7 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
         });
         ------------------------------------------------------
 
+
         STEP 4: Then, create a try/catch block:
         ========================================
         ------------------------------------------------------
@@ -885,6 +888,7 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
             }
         });
         ------------------------------------------------------
+
 
         STEP 5: Inside the try block, put in your code for a successful response:
         =========================================================================
@@ -904,6 +908,24 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
         ----------------------------------------------------------
 
 
+        STEP 6: Inside the catch block, create an error response.
+        =========================================================
+        -------------------------------------------------------------
+        router.post('/', async function(req, res) {                     
+            const subscriber = new Subscriber({                         
+                name: req.body.name,                                   
+                subscribedToChannel: req.body.subscribedToChannel,       
+            });
+            try {                                                        
+                const newSubscriber = await Subscriber.save();           
+                res.status(201).json(newSubscriber);                     
+            } catch (err) {                                              <==  IF the request was unsuccessful...
+                res.status(400).json({ message: err.message});           <==  ... send a response with a status of 500 (i.e. error on the server) and the message object.
+            }
+        });
+
+        -------------------------------------------------------------
+ 
 
 
 
