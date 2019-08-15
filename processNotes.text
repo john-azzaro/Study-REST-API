@@ -733,6 +733,14 @@ PHASE 8: Create GET route in subscribers.js(Routes):
 
     SHORT VERSION
     =============
+        0. Make sure you have your GET route.
+        1. Inside your GET route, add an "async" modifier to the callback function AND a try/catch block.
+        2. Inside your try block, 
+        3. 
+        4. 
+        5. 
+        6. 
+        7. 
 
     EXTENDED VERSION
     ================
@@ -765,8 +773,8 @@ PHASE 8: Create GET route in subscribers.js(Routes):
                 ----------------------------------------------------------   
 
 
-        STEP 2: Add your logic for the try block: 
-        =========================================
+        STEP 2: Add your logic for the try/catch block: 
+        ================================================
             *   In the case of this study, we want to get all the subscribers for the model.
             *   The logic of getting subscribers will go like this:
 
@@ -817,10 +825,83 @@ PHASE 8: Create GET route in subscribers.js(Routes):
             
 PHASE 9: Create a POST route in Subscribers.js (Routes):
 ========================================================
-    *   
+    *   Creating a POST route is a good next step since you would need to create a subscriber in order to see what 
+        they would alllook like, especially when you make a GET request which we just did.
 
+    SHORT VERSION
+    =============
 
+    EXTENDED VERSION
+    ================
+        STEP 1: Setup your post route with an async modifier:
+        ======================================================
+        -----------------------------------------------------
+        router.post('/', async function(req, res) {               <== add async modifier
+            
+        });
+        -----------------------------------------------------
 
+        STEP 2: Create a variable called subscriber and create a "new Subscriber" that takes a JavaScript object:
+        =========================================================================================================
+        ------------------------------------------------------
+        router.post('/', async function(req, res) {              
+            const subscriber = new Subscriber({                 <== create a new "Subscriber"
+
+            }); 
+        });
+        ------------------------------------------------------
+
+        STEP 3: Add the properties that the user will send you for the new subscriber:
+        ==============================================================================
+        ------------------------------------------------------
+        router.post('/', async function(req, res) {              
+            const subscriber = new Subscriber({                
+                name: req.body.name                              <== the name will come from the request (i.e. req), from the body (i.e. body is the 
+                                                                     json user sends to us) and the name property in the body.
+            }); 
+        });
+        ------------------------------------------------------
+        ------------------------------------------------------
+        router.post('/', async function(req, res) {              
+            const subscriber = new Subscriber({                
+                name: req.body.name,
+                subscribedToChannel: req.body.subscribedToChannel,   <== same for the subscribedToChannel as well.                                                                                         
+            }); 
+        });
+        ------------------------------------------------------
+
+        STEP 4: Then, create a try/catch block:
+        ========================================
+        ------------------------------------------------------
+        router.post('/', async function(req, res) {              
+            const subscriber = new Subscriber({                
+                name: req.body.name,
+                subscribedToChannel: req.body.subscribedToChannel,                                                                                           
+            }); 
+            try {                                                   <== try/catch block
+
+            } catch (err) {
+
+            }
+        });
+        ------------------------------------------------------
+
+        STEP 5: Inside the try block, put in your code for a successful response:
+        =========================================================================
+        ----------------------------------------------------------
+        router.post('/', async function(req, res) {                      
+            const subscriber = new Subscriber({                        
+                name: req.body.name,                                    
+                subscribedToChannel: req.body.subscribedToChannel,       
+            });
+            try {                                                        <==  Then when you have your subscriber, you want to save it to the database
+                const newSubscriber = await Subscriber.save();           <==  If successful, when the Subscriber is ready (i.e. awaiting the async function to complete), then SAVE....
+                res.status(201).json(newSubscriber);                     <==  Then send "newSubscriber" as a json object with the status of 201 (this means an object was created successfully)
+            } catch (err) {
+
+            }
+        });
+        ----------------------------------------------------------
 
 
 

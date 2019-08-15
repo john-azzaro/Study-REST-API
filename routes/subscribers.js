@@ -18,8 +18,17 @@ router.get('/:id', function(req, res) {                          //  P.6  --  Ge
 });
 
 // CREATE subscriber
-router.post('/', function(req, res) {                            //  P.6  -- Create a subscriber 
+router.post('/', async function(req, res) {                      //  P.6/9  -- Create a subscriber, and then later add an "async" modifier
+    const subscriber = new Subscriber({                          //  P.9  --  Create a new "Subscriber"...
+         name: req.body.name,                                    //  P.9  --  ... with a name that comes from the request json body 
+        subscribedToChannel: req.body.subscribedToChannel,       //  P.9  --  ... and also the subscribedToChannel
+    });
+    try {                                                        //  P.9  --  Then when you have your subscriber, you want to save it to the database
+        const newSubscriber = await Subscriber.save();           //  P.9  --  If successful, when the Subscriber is ready (i.e. awaiting the async function to complete), then SAVE....
+        res.status(201).json(newSubscriber);                     //  P.9  --  Then send "newSubscriber" as a json object with the status of 201 (this means an object was created successfully)
+    } catch (err) {
 
+    }
 });
 
 // UPDATE subsrcriber
