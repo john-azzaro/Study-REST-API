@@ -4,11 +4,11 @@ const Subscriber = require('../models/subscriber');              //  P7  --  Inc
 
 // GET ALL subscribers
 router.get('/', async (req, res) => {                            //  P.6/8  --  Get all subscribers (on general route "/") and add the "async" modifer 
-    try {
-        const subscribers = await Subscriber.find()
-        res.json(subscribers)
-    } catch (err) {
-        res.status(500).json({ message: err.message })
+    try {                                                        //  P.8  --  IF the request is successful...
+        const subscribers = await Subscriber.find()              //  P.8  --  ... await finding the subscribers and store as a constant...
+        res.json(subscribers)                                    //  P.8  --  ... send all the subscribers to the user using json.
+    } catch (err) {                                              //  P.8  --  IF the request was unsuccessful...
+        res.status(500).json({ message: err.message })           //  P.8  --  ... send a response with a status of 500 (i.e. error on the server) and the message object.
     }
 });
 

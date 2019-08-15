@@ -18,7 +18,11 @@ Restful API design study
     P3: Setup database connection               --   Load mongoose, connect to mongodb, verify connection logic, create .env file.
     P4: Setup initial middleware                --   Add built-in middleware like express.json (lets out server accept JSON as a body).
     P5: Setup Router(s)                         --   Create route folder, Setup Router in server.js, create Route file(s) in routes folder, use given routes, setup route files.
-    P6: Create Routes in Router(s)              --   
+    P6: Create Routes in Router(s)              --   Create route pseudo-code shell and tets for functionality.
+    P7: Create a mongoose model                 --   Create schema folde, file, load mongoose, create new schema, layout and define properties of schema, export schema, import to server.js.
+    P8: Create GET route in routes folder       --   Add GET route logic with an async/await function and try/catch blocks.
+
+  
 
 
 
@@ -590,7 +594,7 @@ PHASE 7: Create a Mongoose Model (i.e. schema):
         5.  Map out the main properties of your schema.
         6.  Define each of the properties you just listed. 
         7.  Export schema so it can be used in the application.
-        8.  
+        8.  Import the schema to your server.js file!
 
     EXTENDED VERSION
     ================
