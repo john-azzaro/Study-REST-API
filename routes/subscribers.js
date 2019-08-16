@@ -3,7 +3,7 @@ const router = express.Router();                                 //  P.5  --  Lo
 const Subscriber = require('../models/subscriber');              //  P7  --  Include your model in this main route file (note the ".." so that you go back one folder to use "models").
 
                                                                  // GET ALL subscribers
-router.get('/', async (req, res) => {                            //  P.6/8  --  Get all subscribers (on general route "/") and add the "async" modifer 
+router.get('/', async function(req, res) {                            //  P.6/8  --  Get all subscribers (on general route "/") and add the "async" modifer 
     try {                                                        //  P.8  --  IF the request is successful...
         const subscribers = await Subscriber.find()              //  P.8  --  ... await finding the subscribers and store as a constant...
         res.json(subscribers)                                    //  P.8  --  ... send all the subscribers to the user using json.
@@ -13,8 +13,8 @@ router.get('/', async (req, res) => {                            //  P.6/8  --  
 });
 
                                                                  // GET (One) subscriber                                             
-router.get('/:id', getSubscriber, function(req, res) {                          //  P.6  --  Get one subscriber (using the id parameter)
-    res.send(res.subscriber.name);                                     
+router.get('/:id', getSubscriber, async function(req, res) {     //  P.6/10  --  Get one subscriber (using the id parameter) and add the getSubscriber middleware and async
+    res.json(res.subscriber);                                    //  P.11  --  Send a json version of the subscriber.    
 });
 
                                                                  // CREATE subscriber
@@ -31,14 +31,19 @@ router.post('/', async function(req, res) {                      //  P.6/9  -- C
     }
 });
 
-                                                                 // UPDATE subscriber
-router.patch('/:id', getSubscriber, function(req, res) {                        //  P.6  -- Update a subscriber     
+                                                                         // UPDATE subscriber
+router.patch('/:id', getSubscriber, async function(req, res) {           //  P.6/10  -- Update a subscriber and add the getSubscriber middleware and async  
 
 });
 
-                                                                  // DELETE Subscriber
-router.delete('/:id', getSubscriber, function(req, res) {                        //  P.6  --  Delete a subscriber 
-
+                                                                        // DELETE Subscriber
+router.delete('/:id', getSubscriber, async function(req, res) {         //  P.6/10  --  Delete a subscriber and add the getSubscriber middleware and async
+    try {
+        await res.subscriber.remove();                                   // P.12  --  await the response from the database for the subscriber id to be removed.
+        res.json( { message: 'subscriber removed...'})                   // P.12  --  If succussful, send the message that the subscriber has been removed.
+    } catch (err) {                                                      // P.12  --  If not successful...
+        res.status(500).json({ message: err.message } );                 // P.12  --  Send a 500 status code and the error message.
+    } 
 });
 
                                                                                                    // getSubscriber Middleware (so we dont have to put the same code in all the routes):

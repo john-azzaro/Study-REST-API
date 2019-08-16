@@ -17,11 +17,15 @@ Restful API design study
     P2: Create Basic Server                     --   Load Express library, instantiate app, and create server in server.js.
     P3: Setup database connection               --   Load mongoose, connect to mongodb, verify connection logic, create .env file.
     P4: Setup initial middleware                --   Add built-in middleware like express.json (lets out server accept JSON as a body).
-    P5: Setup Router(s)                         --   Create route folder, Setup Router in server.js, create Route file(s) in routes folder, use given routes, setup route files.
+    P5: Setup Router(s)                         --   Create route folder, Setup Router in server.js, create Route file(s) in routes folder, 
+                                                     use given routes, setup route files.
     P6: Create Routes in Router(s)              --   Create route pseudo-code shell and tets for functionality.
-    P7: Create a mongoose model                 --   Create schema folde, file, load mongoose, create new schema, layout and define properties of schema, export schema, import to server.js.
+    P7: Create a mongoose model                 --   Create schema folde, file, load mongoose, create new schema, layout and define properties 
+                                                     of schema, export schema, import to server.js.
     P8: Create GET route                        --   Add GET route logic with an async/await function and try/catch blocks.
     P9: Create POST route                       --   Add POST route logic with async/await function, schema, properties, try/catch block, test routes.
+   P10: Create Middleware for id's              --   Create async/await function, get user id, pass middleware function to relevant routes, 
+                                                     test the GET one route.
   
 
 
@@ -735,12 +739,9 @@ PHASE 8: Create GET route in subscribers.js(Routes):
     =============
         0. Make sure you have your GET route.
         1. Inside your GET route, add an "async" modifier to the callback function AND a try/catch block.
-        2. Inside your try block, 
-        3. 
-        4. 
-        5. 
-        6. 
-        7. 
+        2. Inside your try block, await finding subscriber and the response will be "subscribers".
+        3. Inside your catch block, send an error object.
+
 
     EXTENDED VERSION
     ================
@@ -990,7 +991,6 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
     ================
         STEP 1: Create a function in your subscribers.js (route) file called "getSubscriber":
         ======================================================================================
-
         ----------------------------------------------------
         async function getSubscriber(req, res, next) {                <== create a middle ware function with the async modifer (since it will acess the database inside the code.)
 
@@ -1002,7 +1002,7 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
         =================================
         ----------------------------------------------------
         async function getSubscriber(req, res, next) {                
-            try {                                                     <== try/catch block
+            try {                                                     <== try/catch block!
             
             } catch (err) {
                 
@@ -1119,15 +1119,15 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
         ======================================================================================================================
         ------------------------------------------------------
 
-        router.get('/:id', getSubscriber, function(req, res) {   
+        router.get('/:id', getSubscriber, async function(req, res) {   
             
         });
 
-        router.patch('/:id', getSubscriber, function(req, res) {       
+        router.patch('/:id', getSubscriber, async function(req, res) {       
 
         });
 
-        router.delete('/:id', getSubscriber, function(req, res) {          
+        router.delete('/:id', getSubscriber, async function(req, res) {          
 
         });
 
@@ -1139,7 +1139,7 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
             * At this point its best to check and see that your middleware is working correctly.
         -----------------------------------------------------
 
-        router.get('/:id', getSubscriber, function(req, res) {   
+        router.get('/:id', getSubscriber, async function(req, res) {   
             res.send(res.subscriber.name);                        <== Gets the name of the subscriber and send it back.
         }); 
 
@@ -1147,6 +1147,34 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
             *   Then, take an id of one of the test subscribers in your database. In this case:
                 *    "_id": "5d55f1081a5f6721480f90f5",
             *  The return should be "John Smith" or the name of your subscriber attached to that particular id.
+            *  And if you alter the id, you should get a "cannot find subscriber" message.
+
+
+
+PHASE 11: Create a GET (one) route:
+===================================
+    *   For the GET (one) route, its pretty straight forward in that we simply need to send a response with that subscriber.
+        -------------------------------------------------------------
+        router.get('/:id', getSubscriber, async function(req, res) {          
+            res.json(res.subscriber);                                 <== send back a json version of the specific subscriber.      
+        });
+        -------------------------------------------------------------
+
+
+
+PHASE 12: Create a DELETE route:
+===================================
+    *   For the DELETE route, its pretty straight forward in that we simply need to send a response with that subscriber.
+        -------------------------------------------------------------
+        router.get('/:id', getSubscriber, async function(req, res) {          
+            try {
+                await res.subscriber.remove();                       <== removes the subscriber from the database.
+            } catch (err) {
+                res.status(500).json({ message: err.message } );
+            } 
+        });
+        -------------------------------------------------------------
+        
 
 
 
