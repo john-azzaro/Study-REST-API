@@ -13,8 +13,8 @@ router.get('/', async (req, res) => {                            //  P.6/8  --  
 });
 
                                                                  // GET (One) subscriber                                             
-router.get('/:id', function(req, res) {                          //  P.6  --  Get one subscriber (using the id parameter)
-    // res.send(req.params.id);                                      P.6  --  Test GET (one) route functionality in Postman
+router.get('/:id', getSubscriber, function(req, res) {                          //  P.6  --  Get one subscriber (using the id parameter)
+    res.send(res.subscriber.name);                                     
 });
 
                                                                  // CREATE subscriber
@@ -32,16 +32,16 @@ router.post('/', async function(req, res) {                      //  P.6/9  -- C
 });
 
                                                                  // UPDATE subscriber
-router.patch('/:id', function(req, res) {                        //  P.6  -- Update a subscriber     
+router.patch('/:id', getSubscriber, function(req, res) {                        //  P.6  -- Update a subscriber     
 
 });
 
                                                                   // DELETE Subscriber
-router.delete('/:id', function(req, res) {                        //  P.6  --  Delete a subscriber 
+router.delete('/:id', getSubscriber, function(req, res) {                        //  P.6  --  Delete a subscriber 
 
 });
 
-                                                                                                   // getSubscriber Middleware
+                                                                                                   // getSubscriber Middleware (so we dont have to put the same code in all the routes):
 async function getSubscriber(req, res, next) {                                                     // ... is an asynchronous function (access database).
     let subscriber;                                                                                // Set subscriber as an undefined variable (will be defined below).
     try {                                                                                              

@@ -997,6 +997,7 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
         }
         ----------------------------------------------------
 
+
         STEP 2: Insert a try/catch block:
         =================================
         ----------------------------------------------------
@@ -1009,6 +1010,7 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
         }
         ----------------------------------------------------
 
+
         STEP 3: Inside the try block, get a subscriber:
         =================================================
         ----------------------------------------------------
@@ -1020,6 +1022,7 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
             }
         }
         ----------------------------------------------------
+
 
         STEP 4: But first check to see if the user exists:
         ==================================================
@@ -1036,6 +1039,7 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
         }
         ----------------------------------------------------
 
+
         STEP 5: Then, create a subscriber (set to undefined):
         =====================================================
         ----------------------------------------------------
@@ -1051,6 +1055,7 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
             }
         }
         ----------------------------------------------------
+
 
         STEP 6: Then, set the res.subscriber equal to subscriber.
         =====================================================
@@ -1070,6 +1075,7 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
         }
         ----------------------------------------------------
 
+
         STEP 7: Then, provide logic for your catch block:
         =====================================================
         ----------------------------------------------------
@@ -1087,6 +1093,7 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
             res.subscriber = subscriber;                                 
         }
         ----------------------------------------------------
+
 
         STEP 8: Lastly, call "next()"
         =====================================================
@@ -1106,6 +1113,42 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
             next();                                           <== allows the program to move on to the next middleware (or the request itself);                                
         }
         ----------------------------------------------------
+
+
+        STEP 9: Then to use the middleware in the routes, simply pass the middleware function name before each route function:
+        ======================================================================================================================
+        ------------------------------------------------------
+
+        router.get('/:id', getSubscriber, function(req, res) {   
+            
+        });
+
+        router.patch('/:id', getSubscriber, function(req, res) {       
+
+        });
+
+        router.delete('/:id', getSubscriber, function(req, res) {          
+
+        });
+
+        ------------------------------------------------------
+
+
+        OPTIONAL: Test to see if your middleware works correctly:
+        =========================================================
+            * At this point its best to check and see that your middleware is working correctly.
+        -----------------------------------------------------
+
+        router.get('/:id', getSubscriber, function(req, res) {   
+            res.send(res.subscriber.name);                        <== Gets the name of the subscriber and send it back.
+        }); 
+
+        -----------------------------------------------------
+            *   Then, take an id of one of the test subscribers in your database. In this case:
+                *    "_id": "5d55f1081a5f6721480f90f5",
+            *  The return should be "John Smith" or the name of your subscriber attached to that particular id.
+
+
 
 
 
