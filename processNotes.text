@@ -925,6 +925,36 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
         });
 
         -------------------------------------------------------------
+
+
+        STEP 7: Test to see if the POST route worked:
+        =============================================
+        *   For this step, you could do it two ways: Postman or Rest Client.
+        For POSTMAN:
+        ============
+            1. Create a Post request by selecting "POST"
+            2. Put in the URL: http://localhost:3000/subscribers
+            3. Select: Body > raw > JSON
+            4.1. In the body, put in your new subscriber object:
+
+                {
+                    "name": "John Smith",
+                    "subscribedToChannel": "vSauce"
+                }
+
+            4.2. You should see as a result:
+
+                {
+                "_id": "5d55f1081a5f6721480f90f5",
+                "name": "John Smith",
+                "subscribedToChannel": "vSauce",
+                "subscriberDate": "2019-08-15T23:55:52.926Z",
+                "__v": 0
+                }
+
+            5.  Additionally, you can check your mongoDB database using Compass.
+                *   in your collections, (e.g. subscribers), you will find the same subscriber object above!
+            
  
 
 

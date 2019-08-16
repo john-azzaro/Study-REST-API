@@ -5,7 +5,7 @@ const subscriberSchema = new mongoose.Schema({                   // P7  --  For 
         type: String,                                            // P7  --  ... the name must be a string
         required: true                                           // P7  --  ... the name MUST be required (i.e. you must have a name)
     },
-    subscriberChannel: {                                         // P7  --  For the channel,
+    subscribedToChannel: {                                       // P7  --  For the channel,
         type: String,                                            // P7  --  ... the subscriberChannel must be a string
         required: true                                           // P7  --  ... the subscriber MUST be required
     },
