@@ -954,6 +954,20 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
 
             5.  Additionally, you can check your mongoDB database using Compass.
                 *   in your collections, (e.g. subscribers), you will find the same subscriber object above!
+
+        For REST Client:
+        ================
+        *   For REST Client route testing, put in the following code:
+        *   REMEMBER:  You need to put in the triple ### to seperate your requests.
+
+            ###
+            POST http://localhost:3000/subscribers                 <== Post request and the route
+            Content-Type: application/json                         <== content type (json because we have made this a json application)
+
+            {                                                       <== new user object
+                "name": "John Smith", 
+                "subscribedToChannel": "vSauce"
+            }
             
  
 

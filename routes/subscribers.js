@@ -2,7 +2,7 @@ const express = require('express');                              //  P.5  --  Lo
 const router = express.Router();                                 //  P.5  --  Load the router part of express.
 const Subscriber = require('../models/subscriber');              //  P7  --  Include your model in this main route file (note the ".." so that you go back one folder to use "models").
 
-// GET ALL subscribers
+                                                                 // GET ALL subscribers
 router.get('/', async (req, res) => {                            //  P.6/8  --  Get all subscribers (on general route "/") and add the "async" modifer 
     try {                                                        //  P.8  --  IF the request is successful...
         const subscribers = await Subscriber.find()              //  P.8  --  ... await finding the subscribers and store as a constant...
@@ -12,15 +12,15 @@ router.get('/', async (req, res) => {                            //  P.6/8  --  
     }
 });
 
-// GET One subscriber                                             
+                                                                 // GET (One) subscriber                                             
 router.get('/:id', function(req, res) {                          //  P.6  --  Get one subscriber (using the id parameter)
     // res.send(req.params.id);                                      P.6  --  Test GET (one) route functionality in Postman
 });
 
-// CREATE subscriber
+                                                                 // CREATE subscriber
 router.post('/', async function(req, res) {                      //  P.6/9  -- Create a subscriber, and then later add an "async" modifier
     const subscriber = new Subscriber({                          //  P.9  --  Create a new "Subscriber"...
-        name: req.body.name,                                    //  P.9  --  ... with a name that comes from the request json body 
+        name: req.body.name,                                     //  P.9  --  ... with a name that comes from the request json body 
         subscribedToChannel: req.body.subscribedToChannel,       //  P.9  --  ... and also the subscribedToChannel
     });
     try {                                                        //  P.9  --  Then when you have your subscriber, you want to save it to the database
@@ -31,12 +31,12 @@ router.post('/', async function(req, res) {                      //  P.6/9  -- C
     }
 });
 
-// UPDATE subsrcriber
+                                                                 // UPDATE subscriber
 router.patch('/:id', function(req, res) {                        //  P.6  -- Update a subscriber     
 
 });
 
-// DELETE Subscriber
+                                                                  // DELETE Subscriber
 router.delete('/:id', function(req, res) {                        //  P.6  --  Delete a subscriber 
 
 });
