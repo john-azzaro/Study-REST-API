@@ -1027,14 +1027,87 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
         async function getSubscriber(req, res, next) {                
             try {
                 subscriber = await Subscriber.findById(req.params.id);     
-                if (subscriber == null) {                                      <== If the subscriber is not there (equals null), then...
-                    return res.status(404)                                     <== return status 404 (cannot be found)
+                if (subscriber == null) {                                                     <== If the subscriber is not there (equals null), then...
+                    return res.status(404).json( { message: 'Cannot find subscriber'})        <== return status 404 (cannot be found) and return it so the code goes no further.
                 } 
             } catch (err) {
 
             }
         }
         ----------------------------------------------------
+
+        STEP 5: Then, create a subscriber (set to undefined):
+        =====================================================
+        ----------------------------------------------------
+        async function getSubscriber(req, res, next) {    
+            let subscriber;                                                                   <== create a subscriber set to undefined.            
+            try {
+                subscriber = await Subscriber.findById(req.params.id);     
+                if (subscriber == null) {                                                     
+                    return res.status(404).json( { message: 'Cannot find subscriber'})       
+                } 
+            } catch (err) {
+
+            }
+        }
+        ----------------------------------------------------
+
+        STEP 6: Then, set the res.subscriber equal to subscriber.
+        =====================================================
+        ----------------------------------------------------
+        async function getSubscriber(req, res, next) {    
+            let subscriber;                                                                            
+            try {
+                subscriber = await Subscriber.findById(req.params.id);     
+                if (subscriber == null) {                                                     
+                    return res.status(404).json( { message: 'Cannot find subscriber'})       
+                } 
+            } catch (err) {
+
+            }
+
+            res.subscriber = subscriber;                                 <== This will allow you to call "res.subscriber" in all the other routes!
+        }
+        ----------------------------------------------------
+
+        STEP 7: Then, provide logic for your catch block:
+        =====================================================
+        ----------------------------------------------------
+        async function getSubscriber(req, res, next) {    
+            let subscriber;                                                                            
+            try {
+                subscriber = await Subscriber.findById(req.params.id);     
+                if (subscriber == null) {                                                     
+                    return res.status(404).json( { message: 'Cannot find subscriber'})       
+                } 
+            } catch (err) {
+                res.status(500).json( { message: err.message } );       <== Send a status code of 500 (issues with our server) and send an error message object.
+            }
+
+            res.subscriber = subscriber;                                 
+        }
+        ----------------------------------------------------
+
+        STEP 8: Lastly, call "next()"
+        =====================================================
+        ----------------------------------------------------
+        async function getSubscriber(req, res, next) {    
+            let subscriber;                                                                            
+            try {
+                subscriber = await Subscriber.findById(req.params.id);     
+                if (subscriber == null) {                                                     
+                    return res.status(404).json( { message: 'Cannot find subscriber'});       
+                } 
+            } catch (err) {
+                res.status(500).json( { message: err.message } );       
+            }
+
+            res.subscriber = subscriber;
+            next();                                           <== allows the program to move on to the next middleware (or the request itself);                                
+        }
+        ----------------------------------------------------
+
+
 
 
 

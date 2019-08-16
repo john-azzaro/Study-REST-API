@@ -41,5 +41,20 @@ router.delete('/:id', function(req, res) {                        //  P.6  --  D
 
 });
 
+                                                                                                   // getSubscriber Middleware
+async function getSubscriber(req, res, next) {                                                     // ... is an asynchronous function (access database).
+    let subscriber;                                                                                // Set subscriber as an undefined variable (will be defined below).
+    try {                                                                                              
+        subscriber = await Subscriber.findById(req.params.id);                                     // subscriber will equal the result of the id passed in the url aquired by req.params.id
+        if (subscriber == null) {                                                                  // However, if the subscriber does NOT exist...
+            return res.status(404).json( { message: 'Cannot find subscriber'});                    // Return a status of 404 (does not exist, go no further) with message.
+        } 
+    } catch (err) {                                                                                // And if there is an error...
+        res.status(500).json( { message: err.message } );                                          // Send a status of 500 (server issue) with a message.
+    }
+
+    res.subscriber = subscriber;                                                                   // Then set res.subscriber equal to subscriber so it can be used in the routes above.
+    next();                                                                                        // And lastly call next to move on to the next middleware or the route itself.
+}
 
 module.exports = router;                                          //  P.5-5  --  Export router!
