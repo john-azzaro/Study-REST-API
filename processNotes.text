@@ -20,8 +20,8 @@ Restful API design study
     P5: Setup Router(s)                         --   Create route folder, Setup Router in server.js, create Route file(s) in routes folder, use given routes, setup route files.
     P6: Create Routes in Router(s)              --   Create route pseudo-code shell and tets for functionality.
     P7: Create a mongoose model                 --   Create schema folde, file, load mongoose, create new schema, layout and define properties of schema, export schema, import to server.js.
-    P8: Create GET route in routes folder       --   Add GET route logic with an async/await function and try/catch blocks.
-
+    P8: Create GET route                        --   Add GET route logic with an async/await function and try/catch blocks.
+    P9: Create POST route                       --   Add POST route logic with async/await function, schema, properties, try/catch block, test routes.
   
 
 
@@ -830,6 +830,13 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
 
     SHORT VERSION
     =============
+        1. Setup route with "async" modifier.
+        2. Create a new Subscriber schema for the POST request.
+        3. Add the properties you want to add.
+        4. Create try/catch block for successful/unsuccessful req/res.
+        5. Add successful response.
+        6. Add unsuccessful response.
+        7. Test POST route in Postman or REST Client. 
 
     EXTENDED VERSION
     ================
@@ -971,6 +978,63 @@ PHASE 9: Create a POST route in Subscribers.js (Routes):
             
  
 
+ PHASE 10: Create middleware for shared code targeting :id's 
+ ============================================================
+    *   Since Patch, Delete, and GET (One) all have the exact same code at the beginning, we can create a 
+        middleware that will address in one instance and use it in those three routes.
+
+    SHORT VERSION
+    =============
+
+    EXTENDED VERSION
+    ================
+        STEP 1: Create a function in your subscribers.js (route) file called "getSubscriber":
+        ======================================================================================
+
+        ----------------------------------------------------
+        async function getSubscriber(req, res, next) {                <== create a middle ware function with the async modifer (since it will acess the database inside the code.)
+
+        }
+        ----------------------------------------------------
+
+        STEP 2: Insert a try/catch block:
+        =================================
+        ----------------------------------------------------
+        async function getSubscriber(req, res, next) {                
+            try {                                                     <== try/catch block
+            
+            } catch (err) {
+                
+            }
+        }
+        ----------------------------------------------------
+
+        STEP 3: Inside the try block, get a subscriber:
+        =================================================
+        ----------------------------------------------------
+        async function getSubscriber(req, res, next) {                
+            try {
+               subscriber = await Subscriber.findById(req.params.id);        <== Get a user based on the id passed in the url using "req.params.id" which correlates with :id in the route.
+            } catch (err) {
+
+            }
+        }
+        ----------------------------------------------------
+
+        STEP 4: But first check to see if the user exists:
+        ==================================================
+        ----------------------------------------------------
+        async function getSubscriber(req, res, next) {                
+            try {
+                subscriber = await Subscriber.findById(req.params.id);     
+                if (subscriber == null) {                                      <== If the subscriber is not there (equals null), then...
+                    return res.status(404)                                     <== return status 404 (cannot be found)
+                } 
+            } catch (err) {
+
+            }
+        }
+        ----------------------------------------------------
 
 
 
