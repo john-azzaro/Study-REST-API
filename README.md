@@ -75,7 +75,11 @@ process in the processNotes.txt file that goes through my reasoning.
 
 ## Screenshots
 
-
+![rest-get-all](https://user-images.githubusercontent.com/37447586/63206345-89593480-c067-11e9-8f46-e4b0e4f7892f.png)
+![rest-get-one](https://user-images.githubusercontent.com/37447586/63206346-89f1cb00-c067-11e9-8b1c-6a254c50f6ba.png)
+![rest-post](https://user-images.githubusercontent.com/37447586/63206347-89f1cb00-c067-11e9-9c5b-92a00a2c14c1.png)
+![rest-patch](https://user-images.githubusercontent.com/37447586/63206348-89f1cb00-c067-11e9-9a80-0979d1495fd0.png)
+![rest-delete](https://user-images.githubusercontent.com/37447586/63206349-89f1cb00-c067-11e9-8b37-407f9eb0bc94.png)
 
 
 
