@@ -26,10 +26,10 @@ Restful API design study
     P9: Create POST route                       --   Add POST route logic with async/await function, schema, properties, try/catch block, test routes.
    P10: Create Middleware for id's              --   Create async/await function, get user id, pass middleware function to relevant routes, 
                                                      test the GET one route.
+   P11: Create a GET (one) route                --   Add GET (one) logic (using middleware for id)
+   P12: Create a DELETE route                   --   Add DELETE logic (using middleware for id), try/catch block.
+   P13: Create a PATCH route                    --   ADD PATCH logic.
   
-
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
