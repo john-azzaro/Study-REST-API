@@ -1178,7 +1178,15 @@ PHASE 12: Create a DELETE route:
 
 
 
+PHASE 13: Create a PATCH request:
+==================================
+    *   A PATCH request amends some parts of the subscriber rather than the entire thing.
 
+    ------------------------------------------------------------------------
+
+
+    
+    ------------------------------------------------------------------------
 
 
 

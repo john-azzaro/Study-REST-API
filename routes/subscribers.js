@@ -33,7 +33,7 @@ router.post('/', async function(req, res) {                      //  P.6/9  -- C
 
                                                                          // UPDATE subscriber
 router.patch('/:id', getSubscriber, async function(req, res) {           //  P.6/10  -- Update a subscriber and add the getSubscriber middleware and async  
-
+    
 });
 
                                                                         // DELETE Subscriber

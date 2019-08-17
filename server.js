@@ -25,6 +25,6 @@ app.use('/subscribers', subscriberRouter);                                      
 
 
                                                                                    // Server connection //
-app.listen(3000, function() {                                                      // P2.3 -- listen on port 300 for 
+app.listen(3000, function() {                                                      // P2.3 -- listen on port 300  
     console.log('Your app is litening on Port 3000...');
 });
