@@ -54,21 +54,27 @@ The REST API study is broken down into 13 Phases:
 Yes! The REST API Study features EXTENSIVE commentary for the server.js, models > subscriber file, and routes > subscriber file.  I also have an incredibly extensive step-by-step
 process in the processNotes.txt file that goes through my reasoning.
 
+<br>
+
 ## What are the key features of REST API study?
 | **Feature:**                            | **Description:**                             |
 | ---------------------------------------- | ----------------------------------------------|
-|  development environment                  |   Use of dev dependencies, .env file, etc.                            |
-|  clean server.js file                           |   Optimal setup for server.js, including Express, Mongoose (& mongoDb), built-in middleware, and server connection      |
-|                                  |                              |
-|                                  |                              |
-|                                  |                              |
-|                                  |                              |
-|                                  |                              |
-|                                  |                              |
-|                                  |                              |
-|                                  |                              |
-|                                  |                              |
-|                                  |                              |
+|  dev environment setup                  |   Use of dev dependencies, .env file, etc.                            |
+|  clean server.js file                           |   Optimal setup for server.js, including Express, Mongoose (& mongoDb), built-in middleware, and server connection.      |
+|  MongoDB (and mongoose)          |    Database of choice.                          |
+|   Router setup                     |  Keeps server.js clean and routes organized.     |
+|   Model setup                               |    model for database.                          |
+|   GET (all) route                               |   Gets all subs from database.                           |
+|   Custom middleware (for user id)                |   Good example in how to use middleware to reduce repeated code.              |
+|   POST route                               |     Creates a new sub in the database.                         |
+|   DELETE route                               |    Removes an exisiting sub from the database.                          |
+|   PATCH route                               |     Amends an existing sub in the database.                         |
+|   GET (one) route                               |   Gets a single sub in the database.                           |
+
+<br>
+
+## Screenshots
+
 
 
 
