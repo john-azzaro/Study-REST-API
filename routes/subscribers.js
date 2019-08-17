@@ -1,59 +1,59 @@
-const express = require('express');                              //  P.5  --  Load the express library for this file.
-const router = express.Router();                                 //  P.5  --  Load the router part of express.
-const Subscriber = require('../models/subscriber');              //  P7  --  Include your model in this main route file (note the ".." so that you go back one folder to use "models").
+const express = require('express');                                       //  P.5  --  Load the express library for this file.
+const router = express.Router();                                          //  P.5  --  Load the router part of express.
+const Subscriber = require('../models/subscriber');                       //  P7  --  Include your model in this main route file (note the ".." so that you go back one folder to use "models").
 
-                                                                 // GET ALL subscribers
-router.get('/', async function(req, res) {                            //  P.6/8  --  Get all subscribers (on general route "/") and add the "async" modifer 
-    try {                                                        //  P.8  --  IF the request is successful...
-        const subscribers = await Subscriber.find()              //  P.8  --  ... await finding the subscribers and store as a constant...
-        res.json(subscribers)                                    //  P.8  --  ... send all the subscribers to the user using json.
-    } catch (err) {                                              //  P.8  --  IF the request was unsuccessful...
-        res.status(500).json({ message: err.message })           //  P.8  --  ... send a response with a status of 500 (i.e. error on the server) and the message object.
+                                                                          // GET ALL subscribers
+router.get('/', async function(req, res) {                                //  P.6/8  --  Get all subscribers (on general route "/") and add the "async" modifer 
+    try {                                                                 //  P.8  --  IF the request is successful...
+        const subscribers = await Subscriber.find()                       //  P.8  --  ... await finding the subscribers and store as a constant...
+        res.json(subscribers)                                             //  P.8  --  ... send all the subscribers to the user using json.
+    } catch (err) {                                                       //  P.8  --  IF the request was unsuccessful...
+        res.status(500).json({ message: err.message })                    //  P.8  --  ... send a response with a status of 500 (i.e. error on the server) and the message object.
     }
 });
 
-                                                                 // GET (One) subscriber                                             
-router.get('/:id', getSubscriber, async function(req, res) {     //  P.6/10  --  Get one subscriber (using the id parameter) and add the getSubscriber middleware and async
-    res.json(res.subscriber);                                    //  P.11  --  Send a json version of the subscriber.    
+                                                                          // GET (One) subscriber                                             
+router.get('/:id', getSubscriber, async function(req, res) {              //  P.6/10  --  Get one subscriber (using the id parameter) and add the getSubscriber middleware and async
+    res.json(res.subscriber);                                             //  P.11  --  Send a json version of the subscriber.    
 });
 
-                                                                 // CREATE subscriber
-router.post('/', async function(req, res) {                      //  P.6/9  -- Create a subscriber, and then later add an "async" modifier
-    const subscriber = new Subscriber({                          //  P.9  --  Create a new "Subscriber"...
-        name: req.body.name,                                     //  P.9  --  ... with a name that comes from the request json body 
-        subscribedToChannel: req.body.subscribedToChannel,       //  P.9  --  ... and also the subscribedToChannel
+                                                                          // CREATE subscriber
+router.post('/', async function(req, res) {                               //  P.6/9  -- Create a subscriber, and then later add an "async" modifier
+    const subscriber = new Subscriber({                                   //  P.9  --  Create a new "Subscriber"...
+        name: req.body.name,                                              //  P.9  --  ... with a name that comes from the request json body 
+        subscribedToChannel: req.body.subscribedToChannel,                //  P.9  --  ... and also the subscribedToChannel
     });
-    try {                                                        //  P.9  --  Then when you have your subscriber, you want to save it to the database
-        const newSubscriber = await subscriber.save();           //  P.9  --  If successful, when the Subscriber is ready (i.e. awaiting the async function to complete), then SAVE....
-        res.status(201).json(newSubscriber);                     //  P.9  --  Then send "newSubscriber" as a json object with the status of 201 (this means an object was created successfully)
-    } catch (err) {                                              //  P.9  --  IF the request was unsuccessful...
-        res.status(400).json({ message: err.message});           //  P.9  --  ... send a response with a status of 500 (i.e. error on the server) and the message object.
+    try {                                                                 //  P.9  --  Then when you have your subscriber, you want to save it to the database
+        const newSubscriber = await subscriber.save();                    //  P.9  --  If successful, when the Subscriber is ready (i.e. awaiting the async function to complete), then SAVE....
+        res.status(201).json(newSubscriber);                              //  P.9  --  Then send "newSubscriber" as a json object with the status of 201 (this means an object was created successfully)
+    } catch (err) {                                                       //  P.9  --  IF the request was unsuccessful...
+        res.status(400).json({ message: err.message});                    //  P.9  --  ... send a response with a status of 500 (i.e. error on the server) and the message object.
     }
 });
 
-                                                                         // UPDATE subscriber
-router.patch('/:id', getSubscriber, async function(req, res) {           //  P.6/10  -- Update a subscriber (based on what the user passes), and add the getSubscriber middleware and async modifier.  
-    if (req.body.name != null) {                                        //  P.13  --  If the user passes a name to us...
-        res.subscriber.name = req.body.name;                             //  P.13  --  ... then the response of the subscriber name will be equal to the request with the name in the json body.
+                                                                                     // UPDATE subscriber
+router.patch('/:id', getSubscriber, async function(req, res) {                       //  P.6/10  -- Update a subscriber (based on what the user passes), and add the getSubscriber middleware and async modifier.  
+    if (req.body.name != null) {                                                     //  P.13  --  If the user passes a name to us...
+        res.subscriber.name = req.body.name;                                         //  P.13  --  ... then the response of the subscriber name will be equal to the request with the name in the json body.
     }
-    if (req.body.subscribedToChannel != null) {                              //  P.13  --  If the user passes a subscribeToChannel to us...
-        res.subscriber.subscribedToChannel = req.body.subscribedToChannel;    //  P.13  --  ... then the response of the subscriber subscribeToChannle will be equal to the request with the subscribeToChannel in the json body.
+    if (req.body.subscribedToChannel != null) {                                      //  P.13  --  If the user passes a subscribeToChannel to us...
+        res.subscriber.subscribedToChannel = req.body.subscribedToChannel;           //  P.13  --  ... then the response of the subscriber subscribeToChannle will be equal to the request with the subscribeToChannel in the json body.
     }
     try {
-        const updatedSubscriber = await res.subscriber.save();             //  P.13 --  Get the updated subscriber if it is susccessfully saved.
-        res.json(updatedSubscriber);                                       //  P.13  --  Send a response.json object with the updated subscriber.
-    } catch (err) {                                                        //  P.13  --  If there is an error...
-        res.status(400).json( { message: err.message });                   //  P.13  --  Send a status of 400 (the user made an error) and a error message object.
+        const updatedSubscriber = await res.subscriber.save();                       //  P.13 --  Get the updated subscriber if it is susccessfully saved.
+        res.json(updatedSubscriber);                                                 //  P.13  --  Send a response.json object with the updated subscriber.
+    } catch (err) {                                                                  //  P.13  --  If there is an error...
+        res.status(400).json( { message: err.message });                             //  P.13  --  Send a status of 400 (the user made an error) and a error message object.
     }
 });
 
-                                                                        // DELETE Subscriber
-router.delete('/:id', getSubscriber, async function(req, res) {         //  P.6/10  --  Delete a subscriber and add the getSubscriber middleware and async
+                                                                                     // DELETE Subscriber
+router.delete('/:id', getSubscriber, async function(req, res) {                      //  P.6/10  --  Delete a subscriber and add the getSubscriber middleware and async
     try {
-        await res.subscriber.remove();                                   // P.12  --  await the response from the database for the subscriber id to be removed.
-        res.json( { message: 'subscriber removed...'})                   // P.12  --  If succussful, send the message that the subscriber has been removed.
-    } catch (err) {                                                      // P.12  --  If not successful...
-        res.status(500).json({ message: err.message } );                 // P.12  --  Send a 500 status code and the error message.
+        await res.subscriber.remove();                                               // P.12  --  await the response from the database for the subscriber id to be removed.
+        res.json( { message: 'subscriber removed...'})                               // P.12  --  If succussful, send the message that the subscriber has been removed.
+    } catch (err) {                                                                  // P.12  --  If not successful...
+        res.status(500).json({ message: err.message } );                             // P.12  --  Send a 500 status code and the error message.
     } 
 });
 
@@ -73,4 +73,4 @@ async function getSubscriber(req, res, next) {                                  
     next();                                                                                        // And lastly call next to move on to the next middleware or the route itself.
 }
 
-module.exports = router;                                          //  P.5-5  --  Export router!
+module.exports = router;                                                              //  P.5-5  --  Export router!
