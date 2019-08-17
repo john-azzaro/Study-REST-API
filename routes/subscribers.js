@@ -35,11 +35,15 @@ router.post('/', async function(req, res) {                      //  P.6/9  -- C
 router.patch('/:id', getSubscriber, async function(req, res) {           //  P.6/10  -- Update a subscriber (based on what the user passes), and add the getSubscriber middleware and async modifier.  
     if (req.body.name !== null) {                                        //  P.13  --  If the user passes a name to us...
         res.subscriber.name = req.body.name;                             //  P.13  --  ... then the response of the subscriber name will be equal to the request with the name in the json body.
-
     }
     if (req.body.subscribedToChannel !== null) {                              //  P.13  --  If the user passes a subscribeToChannel to us...
         res.subscriber.subscribedToChannel = req.body.subscribedToChannel;    //  P.13  --  ... then the response of the subscriber subscribeToChannle will be equal to the request with the subscribeToChannel in the json body.
-
+    }
+    try {
+        const updatedSubscriber = await res.subscriber.save();             //  P.13 --  Get the updated subscriber if it is susccessfully saved.
+        res.json(updatedSubscriber);                                       //  P.13  --  Send a response.json object with the updated subscriber.
+    } catch (err) {                                                        //  P.13  --  If there is an error...
+        res.status(400).json( { message: err.message });                   //  P.13  --  Send a status of 400 (the user made an error) and a error message object.
     }
 });
 
