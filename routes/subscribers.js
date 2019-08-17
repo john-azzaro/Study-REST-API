@@ -32,8 +32,15 @@ router.post('/', async function(req, res) {                      //  P.6/9  -- C
 });
 
                                                                          // UPDATE subscriber
-router.patch('/:id', getSubscriber, async function(req, res) {           //  P.6/10  -- Update a subscriber and add the getSubscriber middleware and async  
-    
+router.patch('/:id', getSubscriber, async function(req, res) {           //  P.6/10  -- Update a subscriber (based on what the user passes), and add the getSubscriber middleware and async modifier.  
+    if (req.body.name !== null) {                                        //  P.13  --  If the user passes a name to us...
+        res.subscriber.name = req.body.name;                             //  P.13  --  ... then the response of the subscriber name will be equal to the request with the name in the json body.
+
+    }
+    if (req.body.subscribedToChannel !== null) {                              //  P.13  --  If the user passes a subscribeToChannel to us...
+        res.subscriber.subscribedToChannel = req.body.subscribedToChannel;    //  P.13  --  ... then the response of the subscriber subscribeToChannle will be equal to the request with the subscribeToChannel in the json body.
+
+    }
 });
 
                                                                         // DELETE Subscriber
