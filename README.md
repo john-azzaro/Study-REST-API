@@ -65,7 +65,7 @@ process in the processNotes.txt file that goes through my reasoning.
 |   Router setup                     |  Keeps server.js clean and routes organized.     |
 |   Model setup                               |    model for database.                          |
 |   GET (all) route                               |   Gets all subs from database.                           |
-|   Custom middleware (for user id)                |   Good example in how to use middleware to reduce repeated code.              |
+|   Custom middleware (for user id)                |   Good demo in how to use middleware to reduce repeated code.              |
 |   POST route                               |     Creates a new sub in the database.                         |
 |   DELETE route                               |    Removes an exisiting sub from the database.                          |
 |   PATCH route                               |     Amends an existing sub in the database.                         |
